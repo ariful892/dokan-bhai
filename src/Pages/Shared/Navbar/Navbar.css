@@ -1,0 +1,89 @@
+.nav-container {
+    padding: 16px 24px;
+}
+
+.option {
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+}
+
+.title {
+    width: 170px;
+    height: 29px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #2B333B;
+}
+
+.nav-item {
+    margin-right: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+}
+
+.profile-btn {
+    padding: 4px 8px;
+    gap: 10px;
+    width: 112px;
+    height: 32px;
+    background: #DE3D3A;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+
+/* responsive for mobile devices */
+@media screen and (max-width:692px) {
+
+    .nav-container {
+        padding: 16px;
+    }
+
+    .title {
+        width: 150px;
+        font-size: 22px;
+    }
+
+    .nav-item {
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .nav-item img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .profile-btn {
+        margin: 0;
+        width: 90px;
+    }
+}
+
+/* Tablet devices */
+@media only screen and (min-width:693px) and (max-width:1192px) {
+
+    .nav-item {
+        margin-right: 0;
+    }
+
+}

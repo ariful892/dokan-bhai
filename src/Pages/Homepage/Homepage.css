@@ -1,0 +1,49 @@
+.homepage-container {
+    padding-top: 72px;
+    background-color: #F0F5FA;
+    overflow: hidden;
+}
+
+.homepage-title {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 36px;
+    border-bottom: 4px solid #DE3D3A;
+    width: fit-content;
+    margin-bottom: 8px;
+    margin-left: 130px;
+}
+
+/*----------------------
+     Media Queries
+---------------------- */
+
+/* Mobile device */
+@media screen and (max-width:692px) {
+    .home-title-container {
+        width: 95%;
+        margin: auto;
+    }
+
+    .homepage-title {
+
+        margin-left: 0;
+    }
+}
+
+
+
+/* Tablet devices */
+@media only screen and (min-width:693px) and (max-width:1192px) {
+
+
+    .home-title-container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .homepage-title {
+        margin-left: 0;
+    }
+
+}

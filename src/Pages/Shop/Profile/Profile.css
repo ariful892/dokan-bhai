@@ -1,0 +1,224 @@
+.shop-mall-name {
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 36px;
+    color: #4C5967;
+    margin-bottom: 8px;
+    border-bottom: 4px solid #DE3D3A;
+    width: fit-content;
+}
+
+
+.shop-profile-name {
+    font-weight: 600;
+    font-size: 39px;
+    line-height: 60px;
+    margin-bottom: 8px;
+}
+
+.shop-brand-type {
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 48px;
+    margin-bottom: 8px;
+}
+
+.shop-address .shop-email .shop-phone {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 8px;
+}
+
+.contact-btn {
+    padding: 8px 24px;
+    gap: 10px;
+    width: 296px;
+    height: 40px;
+    background: #D1DEEB;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+}
+
+.seller-rating-title {
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 48px;
+    color: #010203;
+    margin-top: 80px;
+    margin-bottom: 24px;
+}
+
+.seller-rating-container {
+    display: flex;
+    column-gap: 40px;
+    height: 192px;
+    margin-bottom: 80px;
+}
+
+.average-rating-container {
+    margin-top: 100px;
+}
+
+.seller-average-rating {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 64px;
+}
+
+.seller-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rating-icon {
+    width: 20px;
+    height: 19px;
+    margin-right: 12px;
+}
+
+.rating-value {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+
+.rating-amount-container {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.rating5-amount {
+    width: 311px;
+    height: 32px;
+    background: #5ED48B;
+    margin-left: 8px;
+}
+
+.rating4-amount {
+    width: 14px;
+    height: 32px;
+    background: #5663F0;
+    margin-left: 8px;
+}
+
+.rating3-amount {
+    width: 8px;
+    height: 32px;
+    background: #5663F0;
+    margin-left: 8px;
+}
+
+.rating2-amount {
+    width: 12px;
+    height: 32px;
+    background: #5663F0;
+    margin-left: 8px;
+}
+
+.rating1-amount {
+    width: 48px;
+    height: 32px;
+    background: #E03E3E;
+    margin-left: 8px;
+}
+
+.product-reviews-title {
+    font-weight: 400;
+    font-size: 31px;
+    line-height: 48px;
+    color: #010203;
+}
+
+.review-container {
+    margin-top: 40px;
+    display: flex;
+    column-gap: 24px;
+}
+
+.review-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.review-product-name {
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 36px;
+    margin-bottom: 8px;
+}
+
+.review-product-type {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+}
+
+.review-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+
+.reply-img-container {
+    display: flex;
+    column-gap: 12px;
+    margin-bottom: 8px;
+}
+
+.rating-icon {
+    width: 15px;
+    height: 14px;
+    margin-right: 8px;
+}
+
+.reply-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+}
+
+/*----------------------
+     Media Queries
+---------------------- */
+
+/* Mobile device */
+@media screen and (max-width:692px) {
+    .seller-rating-container {
+        display: block;
+        height: fit-content;
+    }
+
+    .average-rating-container {
+        margin-top: 0px;
+    }
+
+    .review-container {
+
+        column-gap: 12px;
+    }
+
+
+    .reply-img {
+        width: 130px;
+        height: 130px;
+    }
+
+}
+
+
+
+/* Tablet devices */
+@media only screen and (min-width:693px) and (max-width:1192px) {}
