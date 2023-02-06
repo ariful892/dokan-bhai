@@ -33,7 +33,7 @@ const ShoppingMall = () => {
 
     return (
         <div className='shopping-container'>
-            <div className='block md:flex lg:flex  justify-between items-center lg:items-start'>
+            <div className='mall-name-img-container '>
                 <div className='mall-name-address-container'>
                     <h2 className='page-title'>Shopping Malls</h2>
                     <h2 className='mall-name'>Jomuna Future Park</h2>
@@ -52,7 +52,7 @@ const ShoppingMall = () => {
             <div className="filter-shops-container">
                 <div className='filter-container'>
 
-                    <div className='lg:hidden md:hidden border-2 border-gray-400 px-1 rounded-t-md'>
+                    <div className='filter-title-container-mobile border-2 border-gray-400 px-1 rounded-t-md'>
                         <div onClick={() => setFilter(!filter)} className='flex justify-between '>
                             <h2 className='filter-title-mobile'>Filters</h2>
                             <img className='expand-icon mt-3' src={expandIcon} alt="" />

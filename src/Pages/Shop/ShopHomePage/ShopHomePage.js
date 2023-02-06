@@ -12,29 +12,39 @@ import starIcon from '../../../assets/icons/star-icon.png';
 import star from '../../../assets/icons/Star.png';
 import starLight from '../../../assets/icons/starlight.png';
 import expandIcon from '../../../assets/icons/expand.png';
+import Carousel from 'react-elastic-carousel'
 import ShopProducts from '../ShopProducts/ShopProducts';
 
 const ShopHomePage = () => {
 
     const [filter, setFilter] = useState(false);
 
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 768, itemsToShow: 1 },
+        { width: 1200, itemsToShow: 1 },
+    ];
+
 
     return (
         <div className='shop-home-container'>
 
             <div className="banner-container">
-                <img className='banner-img' src={banner1} alt="" />
-                <img className='banner-img' src={banner2} alt="" />
+                <Carousel breakPoints={breakPoints}>
+                    <img className='banner-img' src={banner1} alt="" />
+                    <img className='banner-img' src={banner2} alt="" />
+                </Carousel>
+
             </div>
 
-            <div className="slider">
+            {/* <div className="slider">
                 <div className="selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
-            </div>
+            </div> */}
 
             <div className='flex justify-between items-center mt-4'>
                 <p className='shop-intro'>আমরা সময়কে রাঙিয়ে তুলি</p>
@@ -53,7 +63,7 @@ const ShopHomePage = () => {
                     <p >Jomuna Future Park</p>
 
                     <div className='btn-container'>
-                        <button className='follow-btn mb-3 lg:mb-0'>Follow</button>
+                        <button className='follow-btn'>Follow</button>
                         <button className='block-btn'>Block</button>
                     </div>
                 </div>

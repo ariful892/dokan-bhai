@@ -23,8 +23,17 @@ import malls12 from '../../../assets/Shopping-malls/malls12.png';
 import banner1 from '../../../assets/banner/banner1.png';
 import banner2 from '../../../assets/banner/banner2.png';
 import { Link } from 'react-router-dom';
+import Carousel from "react-elastic-carousel";
+
 
 const ShoppingMalls = () => {
+
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 768, itemsToShow: 1 },
+        { width: 1200, itemsToShow: 1 },
+    ];
+
     return (
         <div className='shopping-mall-container'>
             <div className='title-country-select-container'>
@@ -316,17 +325,20 @@ const ShoppingMalls = () => {
             </div>
 
             <div className="banner-container">
-                <img className='banner1' src={banner1} alt="" />
-                <img className='banner2' src={banner2} alt="" />
+                <Carousel breakPoints={breakPoints}>
+                    <img className='banner' src={banner1} alt="" />
+                    <img className='banner' src={banner2} alt="" />
+                </Carousel>
+
             </div>
-            <div className="slider">
+            {/* <div className="slider">
                 <div className="selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
                 <div className="non-selected-option"></div>
-            </div>
+            </div> */}
 
             <div className="shop-type">
                 <div className="single-type">
