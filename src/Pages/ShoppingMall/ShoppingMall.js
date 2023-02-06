@@ -24,6 +24,7 @@ import shop13 from '../../assets/shops/shop13.png';
 import shop14 from '../../assets/shops/shop14.png';
 import shop15 from '../../assets/shops/shop15.png';
 import shop16 from '../../assets/shops/shop16.png';
+import { Link } from 'react-router-dom';
 
 
 const ShoppingMall = () => {
@@ -214,7 +215,7 @@ const ShoppingMall = () => {
                         <div className="shop">
                             <img className='shop-image' src={shop1} alt="" />
                             <div className="shop-details">
-                                <h2 className='shop-title'>Bharatsthali</h2>
+                                <Link to={'/shop'} className='shop-title'>Bharatsthali</Link>
                                 <p className='type'>Clothing</p>
                                 <div className=' shop-floor'>
                                     <img className='floor-icon' src={floorIcon} alt="" />

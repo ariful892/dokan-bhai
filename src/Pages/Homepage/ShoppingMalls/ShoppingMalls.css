@@ -99,7 +99,7 @@
 }
 
 .shop-name {
-    width: 320px;
+    width: fit-content;
     height: 48px;
     font-weight: 700;
     font-size: 20px;
@@ -264,40 +264,40 @@
         column-gap: 8px;
     }
 
-    
+
     .shop-container {
         width: 188px;
         padding: 8px;
         gap: 12px;
     }
-    
+
     .shop-img-container {
         width: 170px;
         height: 170px;
         margin-bottom: 16px;
     }
-    
+
     .shop-img {
         width: 100%;
         height: 100%;
     }
-    
+
     .edit-container {
         padding: 6px;
         height: 32px;
         width: 32px;
-       
+
     }
-    
+
     .edit-icon {
         height: 20px;
         width: 20px;
     }
-    
+
     .shop-info-detail {
         margin-left: 8px;
     }
-    
+
     .shop-name {
         width: fit-content;
         height: 48px;
@@ -306,15 +306,15 @@
         line-height: 32px;
         margin-bottom: 52px;
     }
-    
+
     .icons-style {
         width: 19px;
         height: 19px;
         margin-right: 8px;
         margin-bottom: 16px;
-    
+
     }
-    
+
     .shop-info {
         font-weight: 700;
         font-size: 16px;
