@@ -31,6 +31,7 @@ const ShoppingMall = () => {
 
     const [filter, setFilter] = useState(false);
 
+
     return (
         <div className='shopping-container'>
             <div className='mall-name-img-container '>

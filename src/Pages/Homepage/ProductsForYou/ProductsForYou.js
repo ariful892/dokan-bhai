@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductsForYou.css';
 import product1 from '../../../assets/for-you-products/product1.png';
 import product2 from '../../../assets/for-you-products/product2.png';
@@ -10,25 +10,46 @@ import product7 from '../../../assets/for-you-products/product7.png';
 import product8 from '../../../assets/for-you-products/product8.png';
 import product9 from '../../../assets/for-you-products/product9.png';
 import product10 from '../../../assets/for-you-products/product10.png';
+import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading/Loading';
 
 const ProductsForYou = () => {
+
+
+    const { isLoading, error, data: allProducts } = useQuery('products', () =>
+        fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/products/all_products').then(res =>
+            res.json()
+        )
+    )
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
+    console.log(allProducts.products)
+    // const forYouProducts = allProducts.products.slice(0, 16);
+    // console.log(forYouProducts)
+
     return (
         <div className='products-for-container'>
             <h2 className='section-title'>Products For You</h2>
 
             <div className="for-you-products">
-                <div className="single-product">
-                    <div className='img-container'>
-                        <img className='product-img' src={product1} alt="" />
-                    </div>
-                    <div className="product-details">
-                        <p className='product-name'>Sem turpis eu pulvinar.</p>
-                        <p className='product-type'>Sit tempus</p>
-                        <h2 className='product-price'>$130</h2>
-                    </div>
-                </div>
+                {
+                    allProducts.products.slice(0, 16).map(product => <div className="single-product" key={product._id}>
+                        <div className='img-container'>
+                            <img className='product-img' src={product1} alt="" />
+                        </div>
+                        <div className="product-details">
+                            <p className='product-name'>{product.name}</p>
+                            <p className='product-type'>Sit eu</p>
+                            <h2 className='product-price'>{product.price}</h2>
+                        </div>
+                    </div>)
+                }
 
-                <div className="single-product">
+                {/* <div className="single-product">
                     <div className='img-container'>
                         <img className='product-img' src={product2} alt="" />
                     </div>
@@ -130,7 +151,7 @@ const ProductsForYou = () => {
                         <h2 className='product-price'>$130</h2>
                     </div>
 
-                </div>
+                </div> */}
 
             </div>
         </div>

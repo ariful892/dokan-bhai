@@ -1,6 +1,7 @@
 .flashsale-container {
     margin-top: 80px;
     margin-left: 130px;
+    margin-right: 16px;
 }
 
 .section-title {
@@ -47,7 +48,7 @@
 
 .single-product {
     width: fit-content;
-    height: 352px;
+    height: 440px;
     padding: 8px 8px 16px;
     gap: 16px;
     background: #FFFFFF;
@@ -128,27 +129,27 @@
 
     .single-product {
         width: 180px;
-        height: 340px;
+        /* height: 340px; */
         padding: 8px;
         position: relative;
     }
-    
+
     .product-img {
         width: 164px;
         height: 164px;
     }
-    
+
     .product-name {
         width: fit-content;
     }
-    
-    
+
+
     .product-price {
         font-weight: 700;
         font-size: 25px;
         line-height: 36px;
-        position: absolute;
-        bottom: 8px;
+        /* position: absolute;
+        bottom: 8px; */
     }
 }
 

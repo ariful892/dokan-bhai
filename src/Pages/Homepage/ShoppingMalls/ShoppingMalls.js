@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ShoppingMalls.css'
 import searchIcon from '../../../assets/icons/search.png';
 import editIcon from '../../../assets/icons/edit.png';
@@ -24,9 +24,26 @@ import banner1 from '../../../assets/banner/banner1.png';
 import banner2 from '../../../assets/banner/banner2.png';
 import { Link } from 'react-router-dom';
 import Carousel from "react-elastic-carousel";
+import Loading from '../../Shared/Loading/Loading';
+import { useQuery } from 'react-query';
 
 
 const ShoppingMalls = () => {
+
+    const [filter, setFilter] = useState(false);
+
+    const { isLoading, error, data: shoppingMalls } = useQuery('malls', () =>
+        fetch('http://dev.backend.dokanbhai.com:3003/api/newshop').then(res =>
+            res.json()
+        )
+    )
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+
+    // console.log(shoppingMalls.length);
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -55,28 +72,30 @@ const ShoppingMalls = () => {
                 <div className='shopping-mall'>
 
 
-                    <div className='shop-container'>
-                        <div className='shop-img-container'>
-                            <img className='shop-img' src={malls1} alt="" />
-                            <div className='edit-container'>
-                                <img className='edit-icon' src={editIcon} alt="" />
+                    {
+                        shoppingMalls.map(mall => <div className='shop-container' key={mall._id}>
+                            <div className='shop-img-container'>
+                                <img className='shop-img' src={`https://brandatoz.com/images/dokans/${mall.name.split(" ").join("_")}.png`} alt="" />
+                                <div className='edit-container'>
+                                    <img className='edit-icon' src={editIcon} alt="" />
+                                </div>
                             </div>
-                        </div>
-                        <div className="shop-info-detail">
-                            <h2 className='shop-name'>Jomuna Future Park</h2>
-                            <div className='flex items-center'>
-                                <img className='icons-style' src={activityIcon} alt="" />
-                                <p className='shop-info'>16 Active Shops</p>
+                            <div className="shop-info-detail">
+                                <h2 className='shop-name'>{mall.name}</h2>
+                                <div className='flex items-center'>
+                                    <img className='icons-style' src={activityIcon} alt="" />
+                                    <p className='shop-info'>16 Active Shops</p>
+                                </div>
+                                <div className='flex items-center'>
+                                    <img className='icons-style' src={locationIcon} alt="" />
+                                    <p className='shop-info'>200 meter</p>
+                                </div>
                             </div>
-                            <div className='flex items-center'>
-                                <img className='icons-style' src={locationIcon} alt="" />
-                                <p className='shop-info'>200 meter</p>
-                            </div>
-                        </div>
 
-                    </div>
+                        </div>)
+                    }
 
-                    <div className='shop-container'>
+                    {/* <div className='shop-container'>
                         <div className='shop-img-container'>
                             <img className='shop-img' src={malls2} alt="" />
                             <div className='edit-container'>
@@ -305,7 +324,7 @@ const ShoppingMalls = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

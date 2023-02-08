@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Featured.css'
 import tech1 from '../../../assets/featured/tech/tech1.png';
 import tech2 from '../../../assets/featured/tech/tech2.png';
@@ -18,23 +18,39 @@ import mobile3 from '../../../assets/featured/mobile/mobile3.png';
 import cloth1 from '../../../assets/featured/cloth/cloth1.png';
 import cloth2 from '../../../assets/featured/cloth/cloth2.png';
 import cloth3 from '../../../assets/featured/cloth/cloth3.png';
+import Loading from '../../Shared/Loading/Loading';
+import { useQuery } from 'react-query';
 
 const Featured = () => {
+
+
+    const { isLoading, error, data: featuredCategories } = useQuery('categories', () =>
+        fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/add/category').then(res =>
+            res.json()
+        )
+    )
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return (
         <div className='featured-container'>
             <h2 className='section-title'>Featured Categories</h2>
 
             <div className="featured-products-container">
-                <div className="featured-product">
-                    <h2 className='categories-name'>Tech</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={tech1} alt="" />
-                        <img className='product-image' src={tech2} alt="" />
-                        <img className='product-image' src={tech3} alt="" />
-                    </div>
-                </div>
+                {
+                    featuredCategories.map(category => <div className="featured-product" >
+                        <h2 className='categories-name'>{category}</h2>
+                        <div className="product-images">
+                            <img className='product-image' src={tech1} alt="" />
+                            <img className='product-image' src={tech2} alt="" />
+                            <img className='product-image' src={tech3} alt="" />
+                        </div>
+                    </div>)
+                }
 
-                <div className="featured-product">
+                {/* <div className="featured-product">
                     <h2 className='categories-name'>Jewelry</h2>
                     <div className="product-images">
                         <img className='product-image' src={jewelry1} alt="" />
@@ -73,7 +89,7 @@ const Featured = () => {
                         <img className='product-image' src={cloth2} alt="" />
                         <img className='product-image' src={cloth3} alt="" />
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className='text-center'>
                 <button className='load-btn'>Load More</button>
