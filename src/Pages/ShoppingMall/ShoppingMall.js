@@ -9,27 +9,61 @@ import star from '../../assets/icons/Star.png';
 import starLight from '../../assets/icons/starlight.png';
 import mallImg from '../../assets/Shopping-malls/malls1.png';
 import shop1 from '../../assets/shops/shop1.png';
-import shop2 from '../../assets/shops/shop2.png';
-import shop3 from '../../assets/shops/shop3.png';
-import shop4 from '../../assets/shops/shop4.png';
-import shop5 from '../../assets/shops/shop5.png';
-import shop6 from '../../assets/shops/shop6.png';
-import shop7 from '../../assets/shops/shop7.png';
-import shop8 from '../../assets/shops/shop8.png';
-import shop9 from '../../assets/shops/shop9.png';
-import shop10 from '../../assets/shops/shop10.png';
-import shop11 from '../../assets/shops/shop11.png';
-import shop12 from '../../assets/shops/shop12.png';
-import shop13 from '../../assets/shops/shop13.png';
-import shop14 from '../../assets/shops/shop14.png';
-import shop15 from '../../assets/shops/shop15.png';
-import shop16 from '../../assets/shops/shop16.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Loading from '../Shared/Loading/Loading';
+import { useQuery } from 'react-query';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadShops } from '../../redux/actionCreators/shoppingmallActions';
+import loadShopData from '../../redux/thunk/products/fetchShopData';
 
 
 const ShoppingMall = () => {
 
     const [filter, setFilter] = useState(false);
+    const { mallName } = useParams();
+    const [floor, setFloor] = useState(false);
+    const [type, setTypes] = useState(false);
+    const [rating, setRating] = useState(false);
+    // const [floorNo, setFloorNo] = useState([]);
+    // const [allSellers, setAllSellers] = useState([]);
+    const dispatch = useDispatch();
+    const allSellers = useSelector((state) => state.shoppingmall.shops);
+
+
+    // const { isLoading, error, data: allSellers, refetch } = useQuery('sellers', () =>
+    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers').then(res =>
+    //         res.json()
+    //     )
+    // )
+
+    // useEffect(() => {
+    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers')
+    //         .then(res => res.json())
+    //         .then(data => dispatch(loadShops(data)))
+    // }, [dispatch])
+
+    useEffect(() => {
+        dispatch(loadShopData())
+    }, [dispatch])
+
+    const shops = allSellers.filter(seller => seller.seller.marketName === mallName);
+
+    const [filterFloor, setFilterFloor] = useState(shops);
+
+
+
+
+    // console.log(shops);
+
+    let shopContent;
+
+    const handleFloorFilter = (floor) => {
+        shopContent = shops.filter(shop => shop.seller.floorNo === floor);
+
+        setFilterFloor(shopContent);
+
+    }
 
 
     return (
@@ -37,7 +71,7 @@ const ShoppingMall = () => {
             <div className='mall-name-img-container '>
                 <div className='mall-name-address-container'>
                     <h2 className='page-title'>Shopping Malls</h2>
-                    <h2 className='mall-name'>Jomuna Future Park</h2>
+                    <h2 className='mall-name'>{mallName}</h2>
                     <p className='mall-address'>KA-244, Kuril, Progoti Shoroni, Dhaka</p>
 
                     <div className='flex'>
@@ -63,7 +97,7 @@ const ShoppingMall = () => {
 
                     <div className={`${!filter ? 'home-filter' : 'mobile-home-filter'}`}>
                         <div className="filter">
-                            <div className=' filter-type-container'>
+                            <div onClick={() => setFloor(!floor)} className=' filter-type-container'>
                                 <div className='flex items-center'>
                                     <img className='filter-icon' src={floorIcon} alt="" />
                                     <span className='filter-type'>Floor</span>
@@ -71,33 +105,39 @@ const ShoppingMall = () => {
                                 <img className='expand-icon' src={expandIcon} alt="" />
                             </div>
 
-                            <div>
-                                <div className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="checkbox" name="" id="" />
+                            {floor && <div>
+                                <div
+                                    onClick={() => setFilterFloor(shops)} className='flex items-center mb-3'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                    <span className='filter-value'>All</span>
+                                </div>
+                                <div
+                                    onClick={() => handleFloorFilter('0')} className='flex items-center mb-3'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>1st</span>
                                 </div>
-                                <div className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="checkbox" name="" id="" />
+                                <div onClick={() => handleFloorFilter('1')} className='flex items-center mb-3'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>2nd</span>
                                 </div>
-                                <div className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="checkbox" name="" id="" />
+                                <div onClick={() => handleFloorFilter('2')} className='flex items-center mb-3'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>3rd</span>
                                 </div>
-                                <div className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="checkbox" name="" id="" />
+                                <div onClick={() => handleFloorFilter('3')} className='flex items-center mb-3'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>4th</span>
                                 </div>
-                                <div className='flex items-center'>
-                                    <input className='checkbox-icon' type="checkbox" name="" id="" />
+                                <div onClick={() => handleFloorFilter('4')} className='flex items-center'>
+                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>5th</span>
                                 </div>
-                            </div>
+                            </div>}
 
                         </div>
 
                         <div className="filter">
-                            <div className=' filter-type-container'>
+                            <div onClick={() => setTypes(!type)} className=' filter-type-container'>
                                 <div className='flex'>
                                     <img className='filter-icon' src={categoryIcon} alt="" />
                                     <span className='filter-type'>Type</span>
@@ -105,7 +145,7 @@ const ShoppingMall = () => {
                                 <img className='expand-icon' src={expandIcon} alt="" />
                             </div>
 
-                            <div>
+                            {type && <div>
                                 <div className='flex items-center mb-3'>
                                     <input className='checkbox-icon' type="checkbox" name="" id="" />
                                     <span className='filter-value'>Mobile</span>
@@ -126,20 +166,20 @@ const ShoppingMall = () => {
                                     <input className='checkbox-icon' type="checkbox" name="" id="" />
                                     <span className='filter-value'>Laptop</span>
                                 </div>
-                            </div>
+                            </div>}
 
                         </div>
 
                         <div className="filter">
-                            <div className=' filter-type-container'>
+                            <div onClick={() => setRating(!rating)} className=' filter-type-container'>
                                 <div className='flex'>
                                     <img className='filter-icon' src={starIcon} alt="" />
-                                    <span className='filter-type'>Type</span>
+                                    <span className='filter-type'>Rating</span>
                                 </div>
                                 <img className='expand-icon' src={expandIcon} alt="" />
                             </div>
 
-                            <div>
+                            {rating && <div>
                                 <div className='flex items-center mb-3'>
                                     <input className='checkbox-icon' type="radio" name="" id="" />
 
@@ -200,7 +240,7 @@ const ShoppingMall = () => {
                                     </div>
                                     <span className='rating-extra'>and up</span>
                                 </div>
-                            </div>
+                            </div>}
 
                         </div>
                     </div>
@@ -212,190 +252,34 @@ const ShoppingMall = () => {
                         <img className='search-btn' src={searchIcon} alt="" />
                     </div>
 
-                    <div className="shops">
-                        <div className="shop">
-                            <img className='shop-image' src={shop1} alt="" />
-                            <div className="shop-details">
-                                <Link to={'/shop'} className='shop-title'>Bharatsthali</Link>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div className='w-full flex justify-center'>
+                        <div className="shops">
+                            {
+                                filterFloor.map(shop =>
+                                    <Link to={'/shop/home'} className="shop"
+                                        key={shop._id}
+                                    >
+                                        <img className='shop-image' src={`https://brandatoz.com${shop.seller.logo.split(",")[0]}`} alt="" />
+                                        <div className="shop-details">
+                                            <h2 className='shop-title'>{shop.seller.shopName}</h2>
+                                            <p className='type'>{shop.seller.description}</p>
+                                            <div className=' shop-floor'>
+                                                <img className='floor-icon' src={floorIcon} alt="" />
+                                                <span className='floor-no'>Floor no <span>{shop.seller.floorNo}</span></span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                )
 
-                        <div className="shop">
-                            <img className='shop-image' src={shop2} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Khazana</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
+                            }
                         </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop3} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Rookies</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop4} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Irani Borka Bazar</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop5} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Plus Point</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop6} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Kids Paradise</h2>
-                                <p className='type'>Toy Store</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop7} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Shoishob Fashion</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop8} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Illiyeen</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>1st Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop9} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Dorjibari</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop10} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Handibazar</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop11} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Amin Jeweller</h2>
-                                <p className='type'>Jewellery</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop12} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Sumon Fasion</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop13} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Beauty Hub</h2>
-                                <p className='type'>Cosmetics</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop14} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Mehbuba</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop15} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>The Body Shop</h2>
-                                <p className='type'>Cosmetics</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="shop">
-                            <img className='shop-image' src={shop16} alt="" />
-                            <div className="shop-details">
-                                <h2 className='shop-title'>Banglar Mela</h2>
-                                <p className='type'>Clothing</p>
-                                <div className=' shop-floor'>
-                                    <img className='floor-icon' src={floorIcon} alt="" />
-                                    <span className='floor-no'>2nd Floor</span>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
-                    <div className='text-center'>
-                        <button className='load-btn'>Load More</button>
-                    </div>
+                    {filterFloor.length > 1 &&
+                        <div className='text-center'>
+                            <button className='load-btn'>Load More</button>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

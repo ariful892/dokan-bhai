@@ -12,36 +12,29 @@ import Carousel from "react-elastic-carousel";
 import Loading from '../../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import SingleMall from './SingleMall/SingleMall';
+import { useDispatch, useSelector } from 'react-redux';
+import loadShoppingMallData from '../../../redux/thunk/products/fetchShoppingMallData';
 
 
 const ShoppingMalls = () => {
 
-    const [malls, setShoppingMalls] = useState([]);
-    const [isLoading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+    const shoppingMalls = useSelector((state) => state.shoppingmall.shoppingMalls);
 
-    // const { isLoading, error, data: malls } = useQuery('malls', () =>
-    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/newshop').then(res =>
-    //         res.json()
-    //     )
-    //         .then(data => console.log(data))
-    // )
+    // useEffect(() => {
+    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/newshop')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setShoppingMalls(data);
+    //             // console.log('mall: ' + data)
+    //             setLoading(false);
+    //         })
+    // }, [])
 
     useEffect(() => {
-        fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/newshop')
-            .then(res => res.json())
-            .then(data => {
-                setShoppingMalls(data);
-                // console.log('mall: ' + data)
-                setLoading(false);
-            })
-    }, [])
+        dispatch(loadShoppingMallData())
+    }, [dispatch])
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
-
-
-    console.log(malls);
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -52,7 +45,7 @@ const ShoppingMalls = () => {
     return (
         <div className='shopping-mall-container'>
             <div className='title-country-select-container'>
-                <Link to={'/mall'} className='shopping-title'>Shopping Malls</Link>
+                <h2 className='shopping-title'>Shopping Malls</h2>
 
                 <select className='location-select' name="" id="">
                     <option className='bg-white' value="">Bangladesh</option>
@@ -67,38 +60,15 @@ const ShoppingMalls = () => {
                     <input className='input-search' type="text" placeholder='Search' />
                     <img className='search-btn' src={searchIcon} alt="" />
                 </div>
-                <div className='shopping-mall'>
-
-
-                    {
-                        malls.map(mall => <SingleMall
-                            mall={mall}
-                            key={mall._id}
-                        ></SingleMall>)
-                    }
-
-                    {/* <div className='shop-container'>
-                        <div className='shop-img-container'>
-                            <img className='shop-img' src={malls2} alt="" />
-                            <div className='edit-container'>
-                                <img className='edit-icon' src={editIcon} alt="" />
-                            </div>
-                        </div>
-                        <div className="shop-info-detail">
-                            <h2 className='shop-name'>Boshundhora City</h2>
-                            <div className='flex items-center'>
-                                <img className='icons-style' src={activityIcon} alt="" />
-                                <p className='shop-info'>16 Active Shops</p>
-                            </div>
-                            <div className='flex items-center'>
-                                <img className='icons-style' src={locationIcon} alt="" />
-                                <p className='shop-info'>200 meter</p>
-                            </div>
-                        </div>
-
+                <div className='w-full flex justify-center'>
+                    <div className='shopping-mall'>
+                        {
+                            shoppingMalls.map(mall => <SingleMall
+                                mall={mall}
+                                key={mall._id}
+                            ></SingleMall>)
+                        }
                     </div>
-
-                   */}
                 </div>
             </div>
 

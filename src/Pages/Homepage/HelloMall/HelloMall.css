@@ -6,7 +6,9 @@
 .hello-mall-products {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
+    /* gap: 24px; */
+    row-gap: 24px;
+    justify-content: space-between;
     margin-bottom: 24px;
     /* width: fit-content; */
 

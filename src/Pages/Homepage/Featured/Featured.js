@@ -40,7 +40,9 @@ const Featured = () => {
 
             <div className="featured-products-container">
                 {
-                    featuredCategories.map(category => <div className="featured-product" >
+                    featuredCategories.map((category, index) => <div
+                        key={index + 1}
+                        className="featured-product" >
                         <h2 className='categories-name'>{category}</h2>
                         <div className="product-images">
                             <img className='product-image' src={tech1} alt="" />

@@ -17,7 +17,8 @@
     padding: 16px;
     gap: 8px;
 
-    width: 374px;
+    /* width: 374px; */
+    width: fit-content;
     height: 193px;
 
     background: #FFFFFF;
@@ -26,19 +27,22 @@
 
 .categories-name {
     font-weight: 700;
-    font-size: 25px;
+    font-size: 22px;
     line-height: 36px;
     margin-bottom: 16px;
 }
 
 .product-images {
     display: flex;
-    gap: 8px;
+    /* gap: 8px; */
+    justify-content: space-between;
 }
 
 .product-image {
-    width: 108px;
-    height: 108px;
+    width: 90px;
+    height: 90px;
+    /* width: 108px;
+    height: 108px; */
     border-radius: 8px;
 }
 

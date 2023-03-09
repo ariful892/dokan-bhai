@@ -1,25 +1,19 @@
 .nav-container {
     padding: 16px 24px;
+    position: relative;
 }
 
 .option {
     width: 24px;
     height: 24px;
-    margin-right: 16px;
+    margin-right: 12px;
 }
 
-.title {
+.logo {
     width: 170px;
-    height: 29px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 36px;
+    height: 40px;
     display: flex;
     align-items: center;
-    text-align: center;
-    color: #2B333B;
 }
 
 .nav-item {
@@ -50,6 +44,33 @@
     margin-left: 10px;
 }
 
+.sideNavbar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    /* width: 260px; */
+    /* height: 100%; */
+    z-index: 1;
+}
+
+.sidenav-show {
+    width: 200px;
+    transition: width 2s ease-in;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    z-index: 1;
+
+}
+
+.sidenav-hide {
+    width: 0;
+    display: none;
+}
+
+
 
 /* responsive for mobile devices */
 @media screen and (max-width:692px) {
@@ -58,9 +79,13 @@
         padding: 16px;
     }
 
-    .title {
-        width: 150px;
-        font-size: 22px;
+    .option {
+        margin-right: 4px;
+    }
+
+    .logo {
+        width: 130px;
+        height: 30px;
     }
 
     .nav-item {

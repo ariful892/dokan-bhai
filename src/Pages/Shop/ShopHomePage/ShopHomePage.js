@@ -74,7 +74,7 @@ const ShopHomePage = () => {
 
 
                 <div className='filter-container'>
-                    <div className='lg:hidden md:hidden border-2 border-gray-400 px-1 rounded-t-md'>
+                    <div className='filter-title-container-mobile border-2 border-gray-400 px-1 rounded-t-md'>
                         <div onClick={() => setFilter(!filter)} className='flex justify-between '>
                             <h2 className='filter-title-mobile'>Filters</h2>
                             <img className='expand-icon mt-3' src={expandIcon} alt="" />
@@ -116,9 +116,9 @@ const ShopHomePage = () => {
                             </div>
 
                             <div className='price-input-container'>
-                                <input className='price-input' type="number" name="" id="" value='500' />
+                                <input className='price-input' type="number" name="" id="" value='500' readOnly />
 
-                                <input className='price-input' type="number" name="" id="" value='200200' />
+                                <input className='price-input' type="number" name="" id="" value='200200' readOnly />
                             </div>
                         </div>
 

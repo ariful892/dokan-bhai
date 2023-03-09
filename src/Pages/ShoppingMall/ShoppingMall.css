@@ -173,26 +173,27 @@
 .shops {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 24px;
-    row-gap: 32px;
+    gap: 4px;
     margin-top: 32px;
     margin-bottom: 32px;
-
 }
 
 .shop {
-    padding: 8px 8px 24px;
+    padding: 8px 8px;
     gap: 16px;
-    width: 212px;
-    height: 368px;
+    width: 196px;
+    height: 350px;
     background: #FFFFFF;
     border-radius: 8px;
+}
 
+.shop:hover {
+    border: 1px solid blue;
 }
 
 .shop-image {
-    width: 196px;
-    height: 196px;
+    width: 180px;
+    height: 180px;
     border-radius: 8px;
     margin-bottom: 16px;
 
@@ -340,8 +341,8 @@
 
     .shops {
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 12px;
-        row-gap: 20px;
+        /* column-gap: 12px;
+        row-gap: 20px; */
     }
 
     .shop {

@@ -4,7 +4,7 @@
     padding-left: 24px;
     padding-right: 40px;
     padding-bottom: 1000px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .shop-nav {
@@ -18,10 +18,15 @@
     line-height: 32px;
 }
 
-.shop-nav-item:focus {
+.shop-nav-item-active {
     font-weight: 700;
     border-bottom: 2px solid #DE3D3A;
 }
+
+/* .shop-nav-item:focus {
+    font-weight: 700;
+    border-bottom: 2px solid #DE3D3A;
+} */
 
 
 /*----------------------

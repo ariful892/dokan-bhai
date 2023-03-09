@@ -41,9 +41,10 @@
 }
 
 .category-products {
+    width: fit-content;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 8px;
     margin-bottom: 24px;
     margin-top: 24px;
 }
@@ -73,7 +74,7 @@
 @media only screen and (min-width:693px) and (max-width:1192px) {
 
     .category-products {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        grid-template-columns: repeat(3, 1fr);
+        /* gap: 24px; */
     }
 }

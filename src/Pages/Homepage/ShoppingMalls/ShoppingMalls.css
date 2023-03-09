@@ -45,28 +45,33 @@
 }
 
 .shopping-mall {
-    width: 100%;
+    /* width: 100%; */
     margin-top: 24px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 64px;
-    column-gap: 24px;
+    row-gap: 4px;
+    column-gap: 4px;
+    justify-content: center;
     margin-bottom: 80px;
 }
 
 .shop-container {
-    width: 320px;
-    padding: 8px 8px 24px;
-    gap: 24px;
+    width: fit-content;
+    /* height: fit-content; */
+    padding: 8px;
     background: #FFFFFF;
     border: 2px solid #F0F5FA;
     border-radius: 8px;
 }
 
+.shop-container:hover {
+    border: 1px solid blue;
+}
+
 .shop-img-container {
     width: 300px;
     position: relative;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 
 .shop-img {
@@ -95,23 +100,51 @@
 }
 
 .shop-info-detail {
+    width: 70%;
+    background-color: #FFFFFF;
     margin-left: 16px;
+    position: absolute;
+    top: 8px;
+    padding: 4px;
+    border-radius: 8px;
+    opacity: .8;
 }
 
-.shop-name {
+/* .shop-info-detail {
+    margin-left: 16px;
+} */
+
+/* .shop-name {
     width: fit-content;
     height: 48px;
     font-weight: 700;
     font-size: 20px;
     line-height: 32px;
     margin-bottom: 32px;
+} */
+
+.shop-name {
+    width: fit-content;
+    height: 48px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 4px;
 }
 
-.icons-style {
+
+/* .icons-style {
     width: 19px;
     height: 19px;
     margin-right: 8px;
     margin-bottom: 16px;
+    
+} */
+.icons-style {
+    width: 19px;
+    height: 19px;
+    margin-right: 8px;
+    margin-bottom: 4px;
 
 }
 
@@ -120,8 +153,16 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
 }
+
+/* .shop-info {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+} */
 
 .search-filter-container {
     display: grid;
@@ -167,18 +208,6 @@
     margin-bottom: 16px;
 }
 
-/* .banner1 {
-    width: 78%;
-    height: 383px;
-    border-radius: 16px;
-
-}
-
-.banner2 {
-    width: 20%;
-    height: 383px;
-    border-radius: 16px;
-} */
 
 .banner {
     width: 100%;
@@ -261,26 +290,31 @@
     }
 
     .shopping-mall {
-        width: 100%;
+        /* width: 100%; */
         grid-template-columns: repeat(2, 1fr);
-        row-gap: 64px;
-        column-gap: 24px;
         justify-content: center;
-        row-gap: 24px;
-        column-gap: 8px;
+        /* row-gap: 24px; */
+        /* column-gap: 8px; */
     }
 
 
     .shop-container {
         width: 188px;
+        height: fit-content;
+        /* padding: 8px;
+        gap: 12px; */
+    }
+
+    /* .shop-container {
+        width: 188px;
         padding: 8px;
         gap: 12px;
-    }
+    } */
 
     .shop-img-container {
         width: 170px;
         height: 170px;
-        margin-bottom: 16px;
+        /* margin-bottom: 16px; */
     }
 
     .shop-img {
@@ -308,26 +342,44 @@
         width: fit-content;
         height: 48px;
         font-weight: 700;
+        font-size: 16px;
+        line-height: 16px;
+        /* margin-bottom: 52px; */
+    }
+
+    /* 
+    .shop-name {
+        width: fit-content;
+        height: 48px;
+        font-weight: 700;
         font-size: 20px;
         line-height: 32px;
         margin-bottom: 52px;
-    }
+    } */
 
     .icons-style {
         width: 19px;
         height: 19px;
         margin-right: 8px;
-        margin-bottom: 16px;
+        /* margin-bottom: 16px; */
 
     }
 
     .shop-info {
         font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: -0.01em;
+        /* margin-bottom: 16px; */
+    }
+
+    /* .shop-info {
+        font-weight: 700;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: -0.01em;
         margin-bottom: 16px;
-    }
+    } */
 
     .search-filter-container {
         grid-template-columns: 1fr;
@@ -341,25 +393,10 @@
 
     }
 
-    /* .banner-container {
-        gap: 12px;
-    }
 
-    .banner1 {
-        width: 90%;
-        height: 250px;
-        border-radius: 16px;
-
-    }
-
-    .banner2 {
-        width: 10%;
-        height: 250px;
-        border-radius: 16px;
-    } */
 
     .banner {
-        height: 250px;
+        height: 220px;
     }
 
     .shop-type {
@@ -381,8 +418,8 @@
 
     .shopping-mall {
         grid-template-columns: repeat(2, 1fr);
-        row-gap: 64px;
-        column-gap: 24px;
+        /* row-gap: 64px;
+        column-gap: 24px; */
     }
 
 

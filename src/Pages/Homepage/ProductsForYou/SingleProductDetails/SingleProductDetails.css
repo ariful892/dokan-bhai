@@ -1,0 +1,32 @@
+.products-info-container {
+    background-color: #F0F5FA;
+    padding-left: 142px;
+    padding-right: 142px;
+    width: 100%;
+    /* display: flex;
+    justify-content: center; */
+    padding-bottom: 400px;
+    overflow: hidden;
+
+
+}
+
+/*---------------------- Media Queries ---------------------- */
+
+/* Mobile device */
+@media screen and (max-width:692px) {
+    .products-info-container {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
+
+/* Tablet devices */
+@media only screen and (min-width:693px) and (max-width:1192px) {
+    .products-info-container {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}

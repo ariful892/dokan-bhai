@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import './ProductsForYou.css';
-import product1 from '../../../assets/for-you-products/product1.png';
-import product2 from '../../../assets/for-you-products/product2.png';
-import product3 from '../../../assets/for-you-products/product3.png';
-import product4 from '../../../assets/for-you-products/product4.png';
-import product5 from '../../../assets/for-you-products/product5.png';
-import product6 from '../../../assets/for-you-products/product6.png';
-import product7 from '../../../assets/for-you-products/product7.png';
-import product8 from '../../../assets/for-you-products/product8.png';
-import product9 from '../../../assets/for-you-products/product9.png';
-import product10 from '../../../assets/for-you-products/product10.png';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading/Loading';
+import SingleForYouProduct from './SingleForYouProduct/SingleForYouProduct';
+import { useDispatch, useSelector } from 'react-redux';
+import loadProductsForYouData from '../../../redux/thunk/products/fetchProductsForYouData';
 
 const ProductsForYou = () => {
 
+
+    // const dispatch = useDispatch();
+    // const allProducts = useSelector((state) => state.products);
+
+    // console.log(allProducts)
+
+    // useEffect(() => {
+    // dispatch(loadProductsForYouData())
+    // }, [dispatch])
 
     const { isLoading, error, data: allProducts } = useQuery('products', () =>
         fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/products/all_products').then(res =>
@@ -27,8 +29,8 @@ const ProductsForYou = () => {
     }
 
 
-    console.log(allProducts.products)
-    // const forYouProducts = allProducts.products.slice(0, 16);
+    // console.log(allProducts.products)
+    const forYouProducts = allProducts.products.slice(0, 16);
     // console.log(forYouProducts)
 
     return (
@@ -37,16 +39,10 @@ const ProductsForYou = () => {
 
             <div className="for-you-products">
                 {
-                    allProducts.products.slice(0, 16).map(product => <div className="single-product" key={product._id}>
-                        <div className='img-container'>
-                            <img className='product-img' src={product1} alt="" />
-                        </div>
-                        <div className="product-details">
-                            <p className='product-name'>{product.name}</p>
-                            <p className='product-type'>Sit eu</p>
-                            <h2 className='product-price'>{product.price}</h2>
-                        </div>
-                    </div>)
+                    allProducts.products.slice(0, 16).map(product => <SingleForYouProduct
+                        key={product._id}
+                        product={product}
+                    ></SingleForYouProduct>)
                 }
 
                 {/* <div className="single-product">

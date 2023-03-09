@@ -223,4 +223,8 @@
         width: 25%;
         border-radius: 8px;
     }
+
+    .home-shops-container {
+        margin-left: 24px;
+    }
 }

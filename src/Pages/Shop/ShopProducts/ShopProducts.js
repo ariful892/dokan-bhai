@@ -297,116 +297,119 @@ const ShopProducts = () => {
                 </div>
             </div>
 
+
             <div className="vouchers-product">
                 <h2 className='product-section-title'>Vouchers</h2>
-                <div className="products">
-                    <div className="product">
-                        <img className='products-img' src={vouchersProduct} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                <div className='w-full flex '>
+                    <div className="products">
+                        <div className="product">
+                            <img className='products-img' src={vouchersProduct} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div className="product">
-                        <img className='products-img' src={vouchersProduct} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
 
-                    <div className="product">
-                        <img className='products-img' src={vouchersProduct} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                        <div className="product">
+                            <img className='products-img' src={vouchersProduct} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div className="product">
-                        <img className='products-img' src={vouchersProduct} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
 
-                    <div className="product">
-                        <img className='products-img' src={vouchersProduct} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                        <div className="product">
+                            <img className='products-img' src={vouchersProduct} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
+
+                        <div className="product">
+                            <img className='products-img' src={vouchersProduct} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div className="product">
+                            <img className='products-img' src={vouchersProduct} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -716,179 +719,181 @@ const ShopProducts = () => {
             <div >
                 <h2 className='product-section-title'>Products for you</h2>
 
-                <div className="for-you-product">
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct1} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                <div className='w-full flex '>
+                    <div className="for-you-product">
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct1} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct2} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
 
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct3} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct2} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct4} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
 
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct5} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct3} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct6} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
 
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct7} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct4} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
 
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
-                        </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
-                        </div>
-                    </div>
-                    <div className="product">
-                        <img className='products-img' src={forYouProduct8} alt="" />
-                        <div className="product-detail-info">
-                            <h2 className='products-name'>Screenprint Handwork</h2>
-                            <p className='products-type'>Half Silk</p>
-
-                            <div className="rating-container">
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={star} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <img className='rating' src={starlight} alt="" />
-                                <span className='ratings-value'>(5)</span>
-                                <img className='heart' src={heart} alt="" />
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
                             </div>
-                            <p className='products-price'>Tk 2000</p>
                         </div>
-                        <div className='text-center'>
-                            <button className='add-cart-btn'>Add to Cart</button>
+
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct5} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct6} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
+                        </div>
+
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct7} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
+                        </div>
+                        <div className="product">
+                            <img className='products-img' src={forYouProduct8} alt="" />
+                            <div className="product-detail-info">
+                                <h2 className='products-name'>Screenprint Handwork</h2>
+                                <p className='products-type'>Half Silk</p>
+
+                                <div className="rating-container">
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={star} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <img className='rating' src={starlight} alt="" />
+                                    <span className='ratings-value'>(5)</span>
+                                    <img className='heart' src={heart} alt="" />
+                                </div>
+                                <p className='products-price'>Tk 2000</p>
+                            </div>
+                            <div className='text-center'>
+                                <button className='add-cart-btn'>Add to Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>

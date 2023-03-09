@@ -47,18 +47,24 @@
 }
 
 .single-product {
-    width: fit-content;
+    width: 196px;
     height: 440px;
-    padding: 8px 8px 16px;
-    gap: 16px;
+    padding: 8px 8px 16px 8px;
+    /* gap: 16px; */
     background: #FFFFFF;
     border-radius: 8px;
     position: relative;
 }
 
+.single-product:hover {
+    border: 1px solid blue;
+    opacity: 0.8;
+}
+
 .product-img {
-    width: 196px;
-    height: 196px;
+    width: 180px;
+    height: 180px;
+    margin: auto;
 }
 
 .product-details {
