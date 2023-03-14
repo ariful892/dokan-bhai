@@ -1,20 +1,17 @@
-import { LOAD_PRODUCTS_FOR_YOU } from "../actionTypes/actionTypes";
+import { FOR_YOU_PRODUCTS } from "../actionTypes/actionTypes";
 
 const initialState = {
     products: [],
 };
 
-const productsForYouReducer = (state = initialState, action) => {
-    console.log(action)
+export const forProductsReducer = (state = initialState, action) => {
+    // console.log(action)
     switch (action.type) {
-        case LOAD_PRODUCTS_FOR_YOU:
+        case FOR_YOU_PRODUCTS:
             return {
-                ...state,
                 products: action.payload,
             }
         default:
             return state;
     }
 }
-
-export default productsForYouReducer;

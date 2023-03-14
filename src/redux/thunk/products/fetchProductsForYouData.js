@@ -1,4 +1,4 @@
-import { loadProducts } from "../../actionCreators/productsForYouActions";
+import { loadForProducts } from "../../actionCreators/productsForYouActions";
 
 const loadProductsForYouData = () => {
     return async (dispatch, getState) => {
@@ -7,7 +7,7 @@ const loadProductsForYouData = () => {
 
         // console.log(data.products)
         if (data.length) {
-            dispatch(loadProducts(data.products));
+            dispatch(loadForProducts(data.products));
         }
     }
 }

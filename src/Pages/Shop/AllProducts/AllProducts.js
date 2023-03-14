@@ -34,7 +34,7 @@ const AllProducts = () => {
 
             <div className="filter-shops-container">
                 <div className='filter-container'>
-                    <div className='lg:hidden md:hidden border-2 border-gray-400 px-1 rounded-t-md'>
+                    <div className='filter-title-container-mobile border-2 border-gray-400 px-1 rounded-t-md'>
                         <div onClick={() => setFilter(!filter)} className='flex justify-between '>
                             <h2 className='filter-title-mobile'>Sellers Pick</h2>
                             <img className='expand-icon mt-3' src={expandIcon} alt="" />

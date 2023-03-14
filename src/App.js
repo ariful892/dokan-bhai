@@ -14,6 +14,8 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Header from './Pages/Shared/Navbar/Nav';
+import Seller from './Pages/Shop/ShopHome/Home/Seller';
 
 // export const SIDENAV_CONTEXT = createContext();
 
@@ -24,18 +26,24 @@ function App() {
 
   // const value = { sideNav, setSideNav }
 
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div >
       <Provider store={store}>
         {/* <SIDENAV_CONTEXT.Provider value={value}> */}
         <ScrollToTop />
-        <Navbar></Navbar>
+        <Navbar modalOpen={modalOpen} setModalOpen={setModalOpen}></Navbar>
+        {/* <Header modalOpen={modalOpen} setModalOpen={setModalOpen}></Header> */}
         <Routes>
-          <Route path='/' element={<Homepage></Homepage>}></Route>
+          <Route path='/' element={<Homepage></Homepage>}>
+            <Route path='login' ></Route>
+          </Route>
           <Route path='mall/:mallName' element={<ShoppingMall></ShoppingMall>}></Route>
           <Route path='details/:id' element={<SingleProductDetails></SingleProductDetails>}></Route>
           <Route path='shop' element={<Shop></Shop>}>
-            <Route path='home' element={<ShopHomePage></ShopHomePage>}></Route>
+            {/* <Route path='home' element={<ShopHomePage></ShopHomePage>}></Route> */}
+            <Route path='home/:id' element={<Seller></Seller>}></Route>
             <Route path='products' element={<AllProducts></AllProducts>}></Route>
             <Route path='profile' element={<Profile></Profile>}></Route>
           </Route>

@@ -1,6 +1,102 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../../redux/actionCreators/authActions';
 
-const SignUp = () => {
+
+
+const SignUp = ({ setOpenModal }) => {
+    const navigate = useNavigate()
+
+
+    const { userInfoRegister, loading1 } = useSelector((state) => state?.userRegister);
+
+    useEffect(() => {
+        if (userInfoRegister) {
+            navigate('/')
+            console.log('oops')
+        }
+
+    }, [userInfoRegister, navigate])
+
+
+    const [formData, setFormData] = useState({
+
+        name: '',
+        email: '',
+        phnNo: '',
+        password: '',
+        confirmPassword: '',
+        isSeller: ""
+
+    })
+
+
+    const { name, email, phnNo, password, confirmPassword, isSeller } = formData
+
+    const onChange = (e) => {
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [e.target.name]: e.target.value,
+        }))
+
+    }
+
+
+    const nameRef = useRef(null)
+    const emailRef = useRef(null)
+    const phnRef = useRef(null)
+    const passwordRef = useRef(null)
+    const confirmPasswordRef = useRef(null)
+    const isSellerRef = useRef(null)
+    const dispatch = useDispatch()
+
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+        setOpenModal(false);
+
+
+
+
+        const userData = { name, email, phnNo, password, isSeller }
+        console.log(userData)
+        if (password !== confirmPassword) {
+            alert('Password and confirm password are not match');
+        } else {
+            dispatch(register(userData));
+        }
+
+        nameRef.current.value = ""
+        emailRef.current.value = ""
+        phnRef.current.value = ""
+        passwordRef.current.value = ""
+        confirmPasswordRef.current.value = ""
+        isSellerRef.current.value = ""
+
+
+
+
+
+
+
+    }
+
+    if (loading1) {
+        return <div className="flex items-center justify-center">
+            <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status">
+                <span
+                    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                >Loading...</span
+                >
+            </div>
+        </div>
+    }
+
+
     return (
         <div>
             <h1 className='text-3xl font-semibold my-[24px]'>Create Account</h1>

@@ -9,13 +9,15 @@ import star from '../../assets/icons/Star.png';
 import starLight from '../../assets/icons/starlight.png';
 import mallImg from '../../assets/Shopping-malls/malls1.png';
 import shop1 from '../../assets/shops/shop1.png';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadShops } from '../../redux/actionCreators/shoppingmallActions';
+import { filterShop, loadShops } from '../../redux/actionCreators/shoppingmallActions';
 import loadShopData from '../../redux/thunk/products/fetchShopData';
+import { createShopHomePAge } from '../../redux/actionCreators/shopHomepageActions';
+import { getProducts } from '../../redux/actionCreators/productsAction';
 
 
 const ShoppingMall = () => {
@@ -25,12 +27,13 @@ const ShoppingMall = () => {
     const [floor, setFloor] = useState(false);
     const [type, setTypes] = useState(false);
     const [rating, setRating] = useState(false);
-    // const [floorNo, setFloorNo] = useState([]);
+    const navigate = useNavigate();
+    const [floorNo, setFloorNo] = useState(false);
     // const [allSellers, setAllSellers] = useState([]);
     const dispatch = useDispatch();
-    const allSellers = useSelector((state) => state.shoppingmall.shops);
+    const allSellers = useSelector((state) => state.shoppingmall.filteredShops);
 
-
+    console.log(allSellers)
     // const { isLoading, error, data: allSellers, refetch } = useQuery('sellers', () =>
     //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers').then(res =>
     //         res.json()
@@ -44,24 +47,60 @@ const ShoppingMall = () => {
     // }, [dispatch])
 
     useEffect(() => {
-        dispatch(loadShopData())
-    }, [dispatch])
+        dispatch(loadShopData(mallName))
+    }, [dispatch, mallName])
 
-    const shops = allSellers.filter(seller => seller.seller.marketName === mallName);
+    // const shops = allSellers.filter(seller => seller.seller.marketName === mallName);
 
-    const [filterFloor, setFilterFloor] = useState(shops);
-
-
+    // const [filterFloor, setFilterFloor] = useState(allSellers);
 
 
-    // console.log(shops);
 
+    // const shopClick = (id) => {
+    //     dispatch(createShopHomePAge(id))
+    //     dispatch(getProducts(id))
+    //     navigate(`/shop/home/${id}`)
+
+
+
+    // }
+    console.log(floorNo);
     let shopContent;
 
-    const handleFloorFilter = (floor) => {
-        shopContent = shops.filter(shop => shop.seller.floorNo === floor);
+    // if (allSellers && !floorNo) {
+    //     setFilterFloor(allSellers);
+    // }
 
-        setFilterFloor(shopContent);
+
+
+    const handleFloorFilter = (floor) => {
+        // const data = { allSellers, floor }
+
+        dispatch(filterShop(floor))
+        // shopContent = allSellers.filter(shop => shop.seller.floorNo === floor);
+        // .map(shop =>
+        //     <Link
+        //         to={`/shop/home/${shop._id}`}
+        //         // onClick={() => shopClick(shop._id)}
+        //         className="shop"
+        //         key={shop._id}
+        //     >
+        //         <img className='shop-image' src={`https://brandatoz.com${shop.seller.logo.split(",")[0]}`} alt="" />
+        //         <div className="shop-details">
+        //             <h2 className='shop-title'>{shop.seller.shopName}</h2>
+        //             <p className='type'>{shop.seller.description}</p>
+        //             <div className=' shop-floor'>
+        //                 <img className='floor-icon' src={floorIcon} alt="" />
+        //                 <span className='floor-no'>Floor no <span>{shop.seller.floorNo}</span></span>
+        //             </div>
+        //         </div>
+        //     </Link>)
+
+
+        // console.log(allSellers.filter(shop => shop.seller.floorNo === floor))
+        // console.log(floor)
+
+        // setFilterFloor(shopContent);
 
     }
 
@@ -80,7 +119,7 @@ const ShoppingMall = () => {
                     </div>
                 </div>
                 <div>
-                    <img className='mall-img' src={mallImg} alt="" />
+                    <img className='mall-img' src={`https://brandatoz.com/images/dokans/${mallName.split(" ").join("_")}.png`} alt="" />
                 </div>
             </div>
 
@@ -107,29 +146,31 @@ const ShoppingMall = () => {
 
                             {floor && <div>
                                 <div
-                                    onClick={() => setFilterFloor(shops)} className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                    className='flex items-center mb-3'>
+                                    <input onClick={() => handleFloorFilter('all')} className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>All</span>
                                 </div>
                                 <div
-                                    onClick={() => handleFloorFilter('0')} className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                    className='flex items-center mb-3'>
+                                    <input onClick={() => handleFloorFilter('0')} className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>1st</span>
                                 </div>
-                                <div onClick={() => handleFloorFilter('1')} className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                <div className='flex items-center mb-3'>
+                                    <input onClick={() => handleFloorFilter('1')} className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>2nd</span>
                                 </div>
-                                <div onClick={() => handleFloorFilter('2')} className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                <div className='flex items-center mb-3'>
+                                    <input onClick={() => handleFloorFilter('2')
+                                    } className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>3rd</span>
                                 </div>
-                                <div onClick={() => handleFloorFilter('3')} className='flex items-center mb-3'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                <div className='flex items-center mb-3'>
+                                    <input onClick={() => handleFloorFilter('3')} className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>4th</span>
                                 </div>
-                                <div onClick={() => handleFloorFilter('4')} className='flex items-center'>
-                                    <input className='checkbox-icon' type="radio" name="floor" id="" />
+                                <div className='flex items-center'>
+                                    <input onClick={() => handleFloorFilter('4')
+                                    } className='checkbox-icon' type="radio" name="floor" id="" />
                                     <span className='filter-value'>5th</span>
                                 </div>
                             </div>}
@@ -255,8 +296,11 @@ const ShoppingMall = () => {
                     <div className='w-full flex justify-center'>
                         <div className="shops">
                             {
-                                filterFloor.map(shop =>
-                                    <Link to={'/shop/home'} className="shop"
+                                allSellers.map(shop =>
+                                    <Link
+                                        to={`/shop/home/${shop._id}`}
+                                        // onClick={() => shopClick(shop._id)}
+                                        className="shop"
                                         key={shop._id}
                                     >
                                         <img className='shop-image' src={`https://brandatoz.com${shop.seller.logo.split(",")[0]}`} alt="" />
@@ -268,14 +312,13 @@ const ShoppingMall = () => {
                                                 <span className='floor-no'>Floor no <span>{shop.seller.floorNo}</span></span>
                                             </div>
                                         </div>
-                                    </Link>
-                                )
+                                    </Link>)
 
                             }
                         </div>
                     </div>
 
-                    {filterFloor.length > 1 &&
+                    {allSellers.length > 1 &&
                         <div className='text-center'>
                             <button className='load-btn'>Load More</button>
                         </div>

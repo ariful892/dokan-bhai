@@ -9,14 +9,14 @@ import loadProductsForYouData from '../../../redux/thunk/products/fetchProductsF
 const ProductsForYou = () => {
 
 
-    // const dispatch = useDispatch();
-    // const allProducts = useSelector((state) => state.products);
+    const dispatch = useDispatch();
+    const product = useSelector((state) => state.products);
 
-    // console.log(allProducts)
+    console.log(product)
 
-    // useEffect(() => {
-    // dispatch(loadProductsForYouData())
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(loadProductsForYouData())
+    }, [dispatch])
 
     const { isLoading, error, data: allProducts } = useQuery('products', () =>
         fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/products/all_products').then(res =>

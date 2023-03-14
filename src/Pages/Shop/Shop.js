@@ -1,10 +1,15 @@
 import React from 'react';
 import './Shop.css'
 import { Link, NavLink, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 const Shop = () => {
+
+    const id = useSelector((state) => state.user.id)
+
+
     return (
         <div className='single-shop-container'>
 
@@ -12,7 +17,7 @@ const Shop = () => {
 
             <div className='shop-nav'>
                 <NavLink
-                    to="/shop/home"
+                    to={`/shop/home/${id}`}
                     className={({ isActive }) =>
                         isActive ? 'shop-nav-item-active' : 'shop-nav-item'
                     }

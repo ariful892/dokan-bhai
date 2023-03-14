@@ -1,12 +1,19 @@
 import { combineReducers } from "redux";
+import { userRegisterReducer, userSigninReducer } from "./authReducer";
 import navbarReducer from "./navbarReducer";
+import { forProductsReducer } from "./productsForYouReducer";
+import productsReducer from "./productsReducer";
+import shopHompageReducer from "./shopHomepageReducer";
 import shoppingMallReducer from "./shoppingMallReducer";
-import productsForYouReducer from "./productsForYouReducer";
 
 const rootReducer = combineReducers({
     navbar: navbarReducer,
+    forYouProducts: forProductsReducer,
     shoppingmall: shoppingMallReducer,
-    productsForYou: productsForYouReducer,
+    userSignin: userSigninReducer,
+    userRegister: userRegisterReducer,
+    user: shopHompageReducer,
+    productsReducer: productsReducer,
 });
 
 export default rootReducer;

@@ -1,9 +1,9 @@
-import { LOAD_PRODUCTS_FOR_YOU } from "../actionTypes/actionTypes"
+import { FOR_YOU_PRODUCTS } from "../actionTypes/actionTypes"
 
-export const loadProducts = (products) => {
+export const loadForProducts = (products) => {
     console.log(products)
     return {
-        type: LOAD_PRODUCTS_FOR_YOU,
+        type: FOR_YOU_PRODUCTS,
         payload: products,
     }
 }

@@ -101,7 +101,7 @@
 
 .price {
     font-weight: 600;
-    font-size: 48px;
+    font-size: 40px;
     line-height: 64px;
     margin-bottom: 40px;
     /* margin-top: 170px; */
@@ -215,6 +215,7 @@
 
     .price {
         /* margin-top: 100px; */
+        font-size: 32px;
     }
 
     .button-container {

@@ -13,12 +13,12 @@
 .related-products {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
+    gap: 4px;
 }
 
 .related-single-product {
     padding: 8px 8px 16px;
-    gap: 16px;
+    gap: 4px;
     width: 212px;
     height: 429px;
     background: #FFFFFF;
@@ -125,13 +125,13 @@
         width: 100%;
         padding-left: 12px;
         padding-right: 12px;
-
     }
 
     .related-products {
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 10px;
-        row-gap: 24px;
+        width: fit-content;
+        gap: 8px;
+
     }
 
     .related-single-product {
@@ -170,5 +170,6 @@
     .related-products {
         padding-right: 70px;
         grid-template-columns: repeat(3, 1fr);
+        width: fit-content;
     }
 }

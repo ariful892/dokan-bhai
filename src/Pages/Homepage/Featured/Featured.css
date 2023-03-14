@@ -11,6 +11,7 @@
     row-gap: 24px;
     column-gap: 16px;
     margin-bottom: 40px;
+    margin-top: 12px;
 }
 
 .featured-product {
@@ -19,7 +20,7 @@
 
     /* width: 374px; */
     width: fit-content;
-    height: 193px;
+    /* height: 193px; */
 
     background: #FFFFFF;
     border-radius: 8px;
@@ -80,7 +81,6 @@
         row-gap: 24px;
         column-gap: 16px;
         margin-bottom: 40px;
-        width: fit-content;
     }
 }
 
@@ -99,5 +99,6 @@
     .featured-products-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        width: fit-content;
     }
 }

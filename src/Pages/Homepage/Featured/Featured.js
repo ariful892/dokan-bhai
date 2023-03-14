@@ -38,60 +38,23 @@ const Featured = () => {
         <div className='featured-container'>
             <h2 className='section-title'>Featured Categories</h2>
 
-            <div className="featured-products-container">
-                {
-                    featuredCategories.map((category, index) => <div
-                        key={index + 1}
-                        className="featured-product" >
-                        <h2 className='categories-name'>{category}</h2>
-                        <div className="product-images">
-                            <img className='product-image' src={tech1} alt="" />
-                            <img className='product-image' src={tech2} alt="" />
-                            <img className='product-image' src={tech3} alt="" />
-                        </div>
-                    </div>)
-                }
+            <div className='flex '>
+                <div className="featured-products-container">
+                    {
+                        featuredCategories.map((category, index) => <div
+                            key={index + 1}
+                            className="featured-product" >
+                            <h2 className='categories-name'>{category}</h2>
+                            <div className="product-images">
+                                <img className='product-image' src={tech1} alt="" />
+                                <img className='product-image' src={tech2} alt="" />
+                                <img className='product-image' src={tech3} alt="" />
+                            </div>
+                        </div>)
+                    }
 
-                {/* <div className="featured-product">
-                    <h2 className='categories-name'>Jewelry</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={jewelry1} alt="" />
-                        <img className='product-image' src={jewelry2} alt="" />
-                        <img className='product-image' src={jewelry3} alt="" />
-                    </div>
+
                 </div>
-                <div className="featured-product">
-                    <h2 className='categories-name'>Accessories</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={accessories1} alt="" />
-                        <img className='product-image' src={accessories2} alt="" />
-                        <img className='product-image' src={accessories3} alt="" />
-                    </div>
-                </div>
-                <div className="featured-product">
-                    <h2 className='categories-name'>Electric</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={electric1} alt="" />
-                        <img className='product-image' src={electric2} alt="" />
-                        <img className='product-image' src={electric3} alt="" />
-                    </div>
-                </div>
-                <div className="featured-product">
-                    <h2 className='categories-name'>Mobile</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={mobile1} alt="" />
-                        <img className='product-image' src={mobile2} alt="" />
-                        <img className='product-image' src={mobile3} alt="" />
-                    </div>
-                </div>
-                <div className="featured-product">
-                    <h2 className='categories-name'>Cloth</h2>
-                    <div className="product-images">
-                        <img className='product-image' src={cloth1} alt="" />
-                        <img className='product-image' src={cloth2} alt="" />
-                        <img className='product-image' src={cloth3} alt="" />
-                    </div>
-                </div> */}
             </div>
             <div className='text-center'>
                 <button className='load-btn'>Load More</button>

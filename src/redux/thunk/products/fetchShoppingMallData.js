@@ -5,6 +5,7 @@ const loadShoppingMallData = () => {
         const res = await fetch("https://backend.dokanbhai.dokanbhai.com:3002/api/newshop");
         const data = await res.json();
 
+        // console.log(data)
         if (data.length) {
             dispatch(loadShoppingMalls(data));
         }

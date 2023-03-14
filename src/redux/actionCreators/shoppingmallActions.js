@@ -1,4 +1,4 @@
-import { LOAD_SHOPPING_MALLS, LOAD_SHOPS, SIDE_NAVBAR } from "../actionTypes/actionTypes"
+import { LOAD_FILTERED_SHOPS, LOAD_SHOPPING_MALLS, LOAD_SHOPS, SHOP_FILTER, SIDE_NAVBAR } from "../actionTypes/actionTypes"
 
 export const sideNavbar = () => {
     return {
@@ -20,3 +20,18 @@ export const loadShops = (data) => {
     }
 }
 
+export const loadFilteredShops = (data) => {
+    return {
+        type: LOAD_FILTERED_SHOPS,
+        payload: data,
+    }
+}
+
+export const filterShop = (floor) => {
+    return {
+        type: SHOP_FILTER,
+        payload: {
+            floor: floor
+        },
+    }
+}
