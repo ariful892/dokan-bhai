@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../../../../../Shared/Loading/Loading';
 import './ProductDetails.css'
 
-const ProductDetails = ({ productDetails }) => {
+const ProductDetails = ({ product }) => {
 
 
     // console.log(productDetails);
@@ -19,7 +19,7 @@ const ProductDetails = ({ productDetails }) => {
                 </div>
                 <div>
                     <p>Size</p>
-                    <h2>{productDetails?.size}</h2>
+                    <h2>{product?.size}</h2>
                 </div>
                 <div>
                     <p>Weight</p>
@@ -27,7 +27,7 @@ const ProductDetails = ({ productDetails }) => {
                 </div>
                 <div>
                     <p>Color</p>
-                    <h2>{productDetails?.color}</h2>
+                    <h2>{product?.color}</h2>
                 </div>
                 <div>
                     <p>Pack size</p>
@@ -42,7 +42,7 @@ const ProductDetails = ({ productDetails }) => {
                     <h2>Cash on delivery</h2>
                 </div>
             </div>
-            <p className='product-description'>{productDetails.description}</p>
+            <p className='product-description'>{product.description}</p>
         </div>
     );
 };

@@ -10,9 +10,9 @@ const ProductsForYou = () => {
 
 
     const dispatch = useDispatch();
-    const product = useSelector((state) => state.products);
+    const products = useSelector((state) => state.forYouProducts.products);
 
-    console.log(product)
+    console.log(products)
 
     useEffect(() => {
         dispatch(loadProductsForYouData())
@@ -28,24 +28,25 @@ const ProductsForYou = () => {
         return <Loading></Loading>
     }
 
+    console.log(allProducts)
 
-    // console.log(allProducts.products)
-    const forYouProducts = allProducts.products.slice(0, 16);
-    // console.log(forYouProducts)
+    // const forYouProducts = allProducts.products.slice(0, 16);
 
     return (
-        <div className='products-for-container'>
+        <div className='products-for-container mx-3 lg:mx-5'>
             <h2 className='section-title'>Products For You</h2>
 
-            <div className="for-you-products">
-                {
-                    allProducts.products.slice(0, 16).map(product => <SingleForYouProduct
-                        key={product._id}
-                        product={product}
-                    ></SingleForYouProduct>)
-                }
+            <div className='flex justify-center'>
+                <div className="for-you-products">
+                    {
+                        products.slice(0, 16).map(product => <SingleForYouProduct
+                            key={product._id}
+                            product={product}
+                        ></SingleForYouProduct>)
+                    }
 
 
+                </div>
             </div>
         </div>
     );

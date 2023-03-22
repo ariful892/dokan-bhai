@@ -6,7 +6,7 @@ export const register = (userData) => async (dispatch, getState) => {
 
     try {
 
-        const res = await fetch('http://dev.backend.dokanbhai.com:3003/api/users/register', {
+        const res = await fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/register', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {
@@ -45,7 +45,7 @@ export const signin = (userData) => async (dispatch, getState) => {
 
     try {
 
-        const res = await fetch('http://dev.backend.dokanbhai.com:3003/api/users/signin', {
+        const res = await fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/signin', {
             method: 'POST',
             body: JSON.stringify(userData),
             headers: {

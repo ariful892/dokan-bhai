@@ -7,19 +7,21 @@ import ticketIcon from '../../../assets/icons/Ticket.png';
 import subtractIcon from '../../../assets/icons/Subtract.png';
 import banner1 from '../../../assets/banner/banner1.png';
 import banner2 from '../../../assets/banner/banner2.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Carousel from "react-elastic-carousel";
 import Loading from '../../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import SingleMall from './SingleMall/SingleMall';
 import { useDispatch, useSelector } from 'react-redux';
 import loadShoppingMallData from '../../../redux/thunk/products/fetchShoppingMallData';
+import { searchInput } from '../../../redux/actionCreators/searchAction';
 
 
 const ShoppingMalls = () => {
 
     const dispatch = useDispatch();
     const shoppingMalls = useSelector((state) => state.shoppingmall.shoppingMalls);
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/newshop')
@@ -35,6 +37,28 @@ const ShoppingMalls = () => {
         dispatch(loadShoppingMallData())
     }, [dispatch])
 
+    let searchText;
+
+    const handleSearchInput = (e) => {
+        searchText = e.target.value;
+
+        // console.log(searchText)
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            // 👇 Get input value
+            dispatch(searchInput(searchText))
+            navigate('/search')
+            //   setUpdated(message);
+        }
+    };
+
+    const handleSearch = () => {
+        dispatch(searchInput(searchText))
+        navigate('/search')
+    }
+
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -44,22 +68,45 @@ const ShoppingMalls = () => {
 
     return (
         <div className='shopping-mall-container'>
-            <div className='title-country-select-container'>
+            {/* <div className='search-box mt-8'>
+                <input className='input-search' type="text" placeholder='Search' />
+                <img className='search-btn' src={searchIcon} alt="" />
+            </div> */}
+
+            <div className='search-filter-container mt-8 mx-3 lg:mx-5'>
+                <div className='flex'>
+                    <input
+                        onChange={handleSearchInput}
+                        onKeyDown={handleKeyDown}
+                        className='input-search' type="text" name='search' placeholder='Search' />
+                    <img onClick={handleSearch} className='search-btn' src={searchIcon} alt="" />
+                </div>
+
+                {/* <div className='flex w-full'> */}
+                <select className='location-select' name="" id="">
+                    <option className='bg-white' value="">Farmgate</option>
+                    <option className='bg-white' value="">Farmgate</option>
+                    <option className='bg-white' value="">Farmgate</option>
+                </select>
+
+                <button className='advance-btn'>Advance Search</button>
+            </div>
+            {/* </div> */}
+
+            <div className='title-country-select-container mx-3 lg:mx-5'>
+
                 <h2 className='shopping-title'>Shopping Malls</h2>
 
                 <select className='location-select' name="" id="">
                     <option className='bg-white' value="">Bangladesh</option>
-                    <option className='bg-white' value="">Bangladesh</option>
-                    <option className='bg-white' value="">Bangladesh</option>
+                    {/* <option className='bg-white' value="">Bangladesh</option>
+                    <option className='bg-white' value="">Bangladesh</option> */}
                 </select>
             </div>
 
 
             <div>
-                <div className='search-box'>
-                    <input className='input-search' type="text" placeholder='Search' />
-                    <img className='search-btn' src={searchIcon} alt="" />
-                </div>
+
                 <div className='w-full flex justify-center'>
                     <div className='shopping-mall'>
                         {
@@ -72,7 +119,7 @@ const ShoppingMalls = () => {
                 </div>
             </div>
 
-            <div className='search-filter-container'>
+            {/* <div className='search-filter-container'>
                 <div className='flex'>
                     <input className='input-search' type="text" placeholder='Search' />
                     <img className='search-btn' src={searchIcon} alt="" />
@@ -85,15 +132,15 @@ const ShoppingMalls = () => {
                 </select>
 
                 <button className='advance-btn'>Advance Search</button>
-            </div>
+            </div> */}
 
-            <div className="banner-container">
+            {/* <div className="banner-container">
                 <Carousel breakPoints={breakPoints}>
                     <img className='banner' src={banner1} alt="" />
                     <img className='banner' src={banner2} alt="" />
                 </Carousel>
 
-            </div>
+            </div> */}
             {/* <div className="slider">
                 <div className="selected-option"></div>
                 <div className="non-selected-option"></div>
@@ -103,7 +150,7 @@ const ShoppingMalls = () => {
                 <div className="non-selected-option"></div>
             </div> */}
 
-            <div className="shop-type">
+            <div className="shop-type mx-5">
                 <div className="single-type">
                     <img className='shop-type-icon' src={location2Icon} alt="" />
                     <h2 className='shop-type-title'>Physical Shops</h2>
@@ -116,7 +163,7 @@ const ShoppingMalls = () => {
                     <p className='type-details'>Feugiat turpis eget nisi risus. Nullam convallis velit.</p>
                 </div>
 
-                <div className="single-type">
+                <div className="single-type ">
                     <img className='shop-type-icon' src={ticketIcon} alt="" />
                     <h2 className='shop-type-title'>Hello Mall</h2>
                     <p className='type-details'>Feugiat turpis eget nisi risus. Nullam convallis velit ullamcorper.</p>

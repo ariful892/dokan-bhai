@@ -36,9 +36,9 @@ const Featured = () => {
 
     return (
         <div className='featured-container'>
-            <h2 className='section-title'>Featured Categories</h2>
+            <h2 className='section-title mx-3 lg:mx-5'>Featured Categories</h2>
 
-            <div className='flex '>
+            <div className='flex justify-center'>
                 <div className="featured-products-container">
                     {
                         featuredCategories.map((category, index) => <div

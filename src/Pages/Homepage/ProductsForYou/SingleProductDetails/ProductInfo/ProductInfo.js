@@ -25,48 +25,41 @@ import { Container } from "@mui/material";
 
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { useDispatch, useSelector } from 'react-redux';
+import loadSingleProductData from '../../../../../redux/thunk/products/fetchSingleProduct';
 
 const ProductInfo = () => {
 
 
     const { id } = useParams();
-    // const [isLoading, setIsLoading] = useState(true);
+    const dispatch = useDispatch();
+    const product = useSelector((state) => state.forYouProducts.singleProduct);
+    const [displayImage, setDisplayImage] = useState('');
+
+    console.log(product)
+
+    useEffect(() => {
+        dispatch(loadSingleProductData(id));
+    }, [])
+
     const { isLoading, error, data: productDetails, refetch } = useQuery('details', () =>
         fetch(`https://backend.dokanbhai.dokanbhai.com:3002/api/products/${id}`)
             .then(res => res.json())
-        // .then(data => {
-        //     console.log(data);
-        //     refetch();
-        // })
     )
-
-    // const [productDetails, setProductDetails] = useState({});
-
-    // useEffect(() => {
-    //     fetch(`https://backend.dokanbhai.dokanbhai.com:3002/api/products/${id}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             // console.log(data);
-    //             setProductDetails(data)
-    //             setIsLoading(false)
-    //         })
-    // }, [id])
-
-
-
-    const [displayImage, setDisplayImage] = useState('');
 
     if (isLoading) {
         return <Loading></Loading>
     }
 
-    if (productDetails && displayImage === '') {
-        const productImg = productDetails?.image.split(',');
+    console.log(productDetails)
+
+    if (product && displayImage === '') {
+        const productImg = product?.image.split(',');
         console.log(productImg);
         setDisplayImage(`https://brandatoz.com${productImg[0]}`)
     }
 
-    const productImagesList = productDetails.image.split(',');
+    const productImagesList = product.image.split(',');
     let productImages;
 
     if (productImagesList.length < 5) {
@@ -82,13 +75,8 @@ const ProductInfo = () => {
         // setDisplayImage(img)
         setDisplayImage(`https://brandatoz.com${img}`)
         console.log('dis ' + displayImage);
-        refetch()
+        // refetch()
     }
-
-    // console.log(productImages);
-    // console.log(productDetails.description)
-    // console.log(productImagesList)
-    // console.log(productDetails.size)
 
     return (
         <div className='product-info-container'>
@@ -97,39 +85,7 @@ const ProductInfo = () => {
                 <div className='product-img-info'>
                     <div className='product-img-container '>
 
-                        {/* <Container maxWidth='lg' sx={{ mt: 9 }}>
-                            <Grid container spacing={4}>
-                                <Grid item xs={3}>
-                                    <>
-                                        <Carousel showThumbs={false} autoPlay={false} interval={3000} infiniteLoop={true} showArrows={true} showIndicators={true} >
-                                            {productImages.map(img => (
-                                                <div >
-                                                    <Zoom>
-                                                        <img
-                                                            src={img}
-                                                            style={{ maxHeight: '330px', width: 'auto' }} alt=''
-                                                        />
-                                                    </Zoom>
-                                                </div>
-                                            ))};
-                                        </Carousel>
-                                    </>
-
-                                </Grid>
-                                <Grid item xs={5}>
-
-                                </Grid>
-                                <Grid item xs={4}>
-
-                                </Grid>
-                            </Grid>
-                        </Container> */}
-
-
-
                         <div className='product-display-img'>
-
-
                             {/* <Zoom
 
                                 img={displayImage}
@@ -151,32 +107,29 @@ const ProductInfo = () => {
                                 </TransformComponent>
                             </TransformWrapper>
 
-
-
-
                             {/* <img className='product-img-size' src={`https://brandatoz.com${displayImage}`} alt="" />  */}
                         </div>
 
                         <div className='product-demo-img-container'>
                             {
-                                productImages.reverse().map(img =>
-                                    <img onClick={() => handleDisplayImage(img)} src={`https://brandatoz.com${img}`} alt="" />
+                                productImages.reverse().map((img, index) =>
+                                    <img
+                                        key={index + 1}
+                                        onClick={() => handleDisplayImage(img)} src={`https://brandatoz.com${img}`} alt="" />
                                     // <ImageContainer
                                     //     img={img}
                                     //     setDisplayImage={setDisplayImage}
                                     // ></ImageContainer>
                                 )
-
                             }
-
                         </div>
                     </div>
                     <div className='product-info'>
 
-                        <h2 className="products-title">{productDetails.name}</h2>
+                        <h2 className="products-title">{product.name}</h2>
 
                         <div className='flex justify-between items-center'>
-                            <p className="product-type-name">{productDetails.category}</p>
+                            <p className="product-type-name">{product.category}</p>
 
                             <div className='heart-icon-container'>
                                 <img className='heart-icon' src={heart} alt="" />
@@ -191,13 +144,58 @@ const ProductInfo = () => {
                             <img src={starlight} alt="" />
                         </div>
 
+                        <div className='mt-10'>
+                            <div>
+                                {product?.color && <div>
+                                    <span className='text-lg'>Color:</span>
+                                    <select className='ml-2 p-2 rounded-md w-36' name="" id="">
+                                        <option value="Choose color" selected>Choose color
+                                        </option>
+
+                                        {product?.color.split(',').map(color =>
+                                            <option value="red">{color}</option>
+                                        )}
+
+
+                                    </select>
+                                </div>
+                                }
+                            </div>
+
+                            <div className='mt-2'>
+                                {product?.size && <div>
+                                    <span className='text-lg'>Size:</span>
+                                    <select className='ml-5 p-2 rounded-md w-36' name="" id="">
+                                        <option value="Choose color" selected>Choose size
+                                        </option>
+
+                                        {product?.size.split(',').map(size =>
+                                            <option value="red">{size}</option>
+                                        )}
+
+
+                                    </select>
+                                </div>
+                                }
+                            </div>
+
+                            <div className='mt-2'>
+                                {product?.countInStock && <div>
+                                    <span className='text-lg'>Quantity:</span>
+
+                                    <input className='ml-5 p-2 rounded-md w-28' type="number" />
+
+                                </div>
+                                }
+                            </div>
+                        </div>
                         <div className="price-btn-container">
-                            <p className="quantity">Available Quantity: <span>{productDetails.countInStock}</span></p>
-                            <h2 className="price">BDT <span>{productDetails.price}</span></h2>
+                            <p className="quantity">Available Quantity: <span>{product.countInStock}</span></p>
+                            <h2 className="price">BDT <span>{product.price}</span></h2>
 
                             <div className='button-container'>
-                                <button className='btn-red'>Add to Black Friday</button>
-                                <button className='btn-gray'>Add to Flash Sale</button>
+                                <button className='btn-red'>Buy Now</button>
+                                <button className='btn-gray'>Add to Cart</button>
                             </div>
                         </div>
                         {/* <div className='heart-icon-container'>
@@ -205,7 +203,7 @@ const ProductInfo = () => {
                         </div> */}
                     </div>
                 </div>
-                <ProductDetails productDetails={productDetails}></ProductDetails>
+                <ProductDetails product={product}></ProductDetails>
             </div>
             <DeliveryOption></DeliveryOption>
 

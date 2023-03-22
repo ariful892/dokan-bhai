@@ -3,9 +3,16 @@ export const LOAD_SHOPPING_MALLS = "LOAD_SHOPPING_MALLS";
 export const LOAD_SHOPS = "LOAD_SHOPS";
 export const LOAD_FILTERED_SHOPS = "LOAD_FILTERED_SHOPS";
 export const SHOP_FILTER = 'SHOP_FILTER'
-export const FOR_YOU_PRODUCTS = "FOR_YOU_PRODUCTS";
 
-// shop home page
+//for you products
+export const FOR_YOU_PRODUCTS = "FOR_YOU_PRODUCTS";
+export const SINGLE_PRODUCT = "SINGLE_PRODUCT"
+
+//search action types
+export const SEARCH_INPUT = "SEARCH_INPUT";
+export const SEARCH_PRODUCTS = "SEARCH_PRODUCTS";
+
+// shops action types
 
 export const SHOPHOMEPAGEUSER = 'SHOPHOMEPAGEUSER'
 export const LOADPRODUCTS = 'LOADPRODUCTS'

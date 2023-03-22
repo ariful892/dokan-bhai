@@ -5,8 +5,7 @@ const SingleForYouProduct = ({ product }) => {
 
     const navigate = useNavigate();
     const productImg = product.image.split(',');
-    // console.log(productImg);
-    // console.log(productImg[0]);
+
 
     const showProductDetails = () => {
         // navigate(`/details/${product._id}`);

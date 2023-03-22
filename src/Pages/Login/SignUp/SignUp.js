@@ -99,9 +99,9 @@ const SignUp = ({ setOpenModal }) => {
 
     return (
         <div>
-            <h1 className='text-3xl font-semibold my-[24px]'>Create Account</h1>
+            <h1 className='text-3xl font-semibold my-[12px]'>Create Account</h1>
             <form className='' onSubmit={onSubmit}>
-                <div className='flex flex-col  space-y-6 '>
+                <div className='flex flex-col  space-y-3 '>
 
                     <input className='border-2 border-[#5C738A] w-full rounded-[8px] px-[16px] py-[8px] text-[16px]  text-[#5C738A]' type="text" value={name} name='name' ref={nameRef} placeholder='Username' onChange={onChange} />
                     <input className='border-2 border-[#5C738A] w-full rounded-[8px] px-[16px] py-[8px] text-[16px]  text-[#5C738A]' type="text" value={email} name='email' ref={emailRef} placeholder='email' onChange={onChange} />

@@ -33,7 +33,7 @@ const ShoppingMall = () => {
     const dispatch = useDispatch();
     const allSellers = useSelector((state) => state.shoppingmall.filteredShops);
 
-    console.log(allSellers)
+    // console.log(allSellers)
     // const { isLoading, error, data: allSellers, refetch } = useQuery('sellers', () =>
     //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers').then(res =>
     //         res.json()

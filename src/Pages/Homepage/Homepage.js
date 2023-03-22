@@ -15,9 +15,9 @@ const Homepage = () => {
         <div className='homepage-container'>
 
             <img className='display-picture' src={display} alt="" />
-            <div className='home-title-container'>
+            {/* <div className='home-title-container'>
                 <h2 className='homepage-title'>Homepage</h2>
-            </div>
+            </div> */}
 
 
 

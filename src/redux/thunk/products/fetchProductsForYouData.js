@@ -6,7 +6,7 @@ const loadProductsForYouData = () => {
         const data = await res.json();
 
         // console.log(data.products)
-        if (data.length) {
+        if (data.products.length) {
             dispatch(loadForProducts(data.products));
         }
     }

@@ -16,30 +16,30 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import Header from './Pages/Shared/Navbar/Nav';
 import Seller from './Pages/Shop/ShopHome/Home/Seller';
+import SearchProducts from './Pages/Homepage/SearchProducts/SearchProducts';
+import Nav from './Pages/Shared/Navbar/Nav';
 
-// export const SIDENAV_CONTEXT = createContext();
 
 
 function App() {
-
-  // const [sideNav, setSideNav] = useState(false);
-
-  // const value = { sideNav, setSideNav }
 
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div >
       <Provider store={store}>
-        {/* <SIDENAV_CONTEXT.Provider value={value}> */}
+
         <ScrollToTop />
-        <Navbar modalOpen={modalOpen} setModalOpen={setModalOpen}></Navbar>
-        {/* <Header modalOpen={modalOpen} setModalOpen={setModalOpen}></Header> */}
+        {/* <Navbar modalOpen={modalOpen} setModalOpen={setModalOpen}></Navbar> */}
+        <Nav modalOpen={modalOpen} setModalOpen={setModalOpen}></Nav>
+
         <Routes>
           <Route path='/' element={<Homepage></Homepage>}>
             <Route path='login' ></Route>
+            <Route path='signup' ></Route>
           </Route>
           <Route path='mall/:mallName' element={<ShoppingMall></ShoppingMall>}></Route>
+          <Route path='search' element={<SearchProducts></SearchProducts>}></Route>
           <Route path='details/:id' element={<SingleProductDetails></SingleProductDetails>}></Route>
           <Route path='shop' element={<Shop></Shop>}>
             {/* <Route path='home' element={<ShopHomePage></ShopHomePage>}></Route> */}

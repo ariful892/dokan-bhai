@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const shoppingMallReducer = (state = initialState, action) => {
-    console.log(action.payload)
     switch (action.type) {
         case LOAD_SHOPPING_MALLS:
             return {
@@ -26,7 +25,6 @@ const shoppingMallReducer = (state = initialState, action) => {
                 filteredShops: action.payload,
             }
         case SHOP_FILTER:
-            console.log(state)
 
             if (action.payload.floor === 'all') {
                 return {
