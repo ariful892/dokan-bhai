@@ -28,6 +28,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useDispatch, useSelector } from 'react-redux';
 import loadSingleProductData from '../../../../../redux/thunk/products/fetchSingleProduct';
 import { productDisplayImage } from '../../../../../redux/actionCreators/productsForYouActions';
+import { toast } from 'react-toastify';
 
 const ProductInfo = () => {
 
@@ -36,10 +37,13 @@ const ProductInfo = () => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.forYouProducts.singleProduct);
     const img = useSelector((state) => state.forYouProducts.displayImage);
-    // const [displayImage, setDisplayImage] = useState('');
-    // const [isLoading, setIsLoading] = useState(true);
+    const [pColor, setColor] = useState('');
+    // const [size, setSize] = useState('');
+    // const [quantity, setQuantity] = useState(0);
 
-    console.log(img)
+    console.log(pColor)
+    // console.log('sz' + size)
+    // console.log('q' + quantity)
 
     useEffect(() => {
         dispatch(loadSingleProductData(id));
@@ -78,15 +82,42 @@ const ProductInfo = () => {
     }
 
     const handleDisplayImage = img => {
-        // console.log(img);
-        // setDisplayImage(img)
-        // setDisplayImage(`https://brandatoz.com${img}`)
-        // console.log('dis ' + displayImage);
-        // refetch()
         const imageUrl = `https://brandatoz.com${img}`;
         // console.log(imageUrl)
         dispatch(productDisplayImage(imageUrl))
     }
+
+    // const part = {
+    //     name,
+    //     description,
+    //     price,
+    //     minimumOrder,
+    //     availableQuantity,
+    //     img
+    // }
+
+    // console.log(part);
+
+    // send review to database
+    // fetch('http://localhost:5000/cart', {
+    //     method: 'POST',
+    //     headers: {
+    //         'content-type': 'application/json',
+    //         // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    //     },
+    //     body: JSON.stringify()
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if (data.insertedId) {
+    //             toast.success('Product is added');
+    //             // reset();
+    //         }
+    //         else (
+    //             toast.error('Failed to add')
+    //         )
+    //     })
+
 
     return (
         <div className='product-info-container'>
@@ -158,14 +189,14 @@ const ProductInfo = () => {
                             <div>
                                 {product?.color && <div>
                                     <span className='text-lg mr-1'>Color:</span>
-                                    <select className='ml-10 p-2 rounded-md w-40' name="" id="">
-                                        <option value="Choose color" >Choose color
+                                    <select className='ml-10 p-2 rounded-md w-40' name="color" id="color">
+                                        <option  >Choose color
                                         </option>
 
                                         {product?.color.split(',').map(c =>
-                                            <option value={c}>{c}</option>
+                                            <option onClick={(e) => setColor(e.target
+                                                .value)} value={c}>{c}</option>
                                         )}
-
 
                                     </select>
                                 </div>
@@ -175,8 +206,8 @@ const ProductInfo = () => {
                             <div className='mt-2'>
                                 {product?.size && <div>
                                     <span className='text-lg mr-1'>Size:</span>
-                                    <select className='ml-12 p-2 rounded-md w-40' name="" id="">
-                                        <option value="Choose size" >Choose size
+                                    <select className='ml-12 p-2 rounded-md w-40' name="size" id="size">
+                                        <option  >Choose size
                                         </option>
 
                                         {product?.size.split(',').map(s =>
@@ -194,8 +225,8 @@ const ProductInfo = () => {
                             <div className='mt-2'>
                                 {product?.countInStock && <div>
                                     <span className='text-lg'>Quantity:</span>
-                                    <select className='ml-5 p-2 rounded-md w-40' name="" id="">
-                                        <option value="Choose Quantity" >Choose Quantity
+                                    <select className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity">
+                                        <option >Choose Quantity
                                         </option>
                                         {(() => {
                                             let option = [];

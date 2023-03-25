@@ -1,16 +1,15 @@
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Pages/Shared/Navbar/Navbar';
 import Footer from './Pages/Shared/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Homepage from './Pages/Homepage/Homepage';
 import ShoppingMall from './Pages/ShoppingMall/ShoppingMall';
 import Shop from './Pages/Shop/Shop';
-import ShopHomePage from './Pages/Shop/ShopHomePage/ShopHomePage';
 import AllProducts from './Pages/Shop/AllProducts/AllProducts';
 import Profile from './Pages/Shop/Profile/Profile';
 import SingleProductDetails from './Pages/Homepage/ProductsForYou/SingleProductDetails/SingleProductDetails';
 import ScrollToTop from './Pages/ScrollToTop/ScrollToTop';
-import { createContext } from 'react';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -19,6 +18,7 @@ import Seller from './Pages/Shop/ShopHome/Home/Seller';
 import SearchProducts from './Pages/Homepage/SearchProducts/SearchProducts';
 import Nav from './Pages/Shared/Navbar/Nav';
 import Carts from './Pages/Carts/Carts';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -55,7 +55,7 @@ function App() {
         {/* </SIDENAV_CONTEXT.Provider> */}
       </Provider>
 
-
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
