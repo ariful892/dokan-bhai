@@ -2,12 +2,13 @@
     background-color: #F0F5FA;
     overflow: hidden;
     /* margin-top: 50px; */
+    padding-top: 72px;
+
 }
 
 
 .display-picture {
     width: 100%;
-    margin-top: 72px;
 }
 
 .homepage-title {

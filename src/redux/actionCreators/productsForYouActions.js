@@ -1,4 +1,4 @@
-import { FOR_YOU_PRODUCTS, SINGLE_PRODUCT } from "../actionTypes/actionTypes"
+import { FOR_YOU_PRODUCTS, PRODUCT_DISPLAY_IMAGE, SINGLE_PRODUCT } from "../actionTypes/actionTypes"
 
 export const loadForProducts = (products) => {
     // console.log(products)
@@ -13,5 +13,12 @@ export const loadSingleProduct = (product) => {
     return {
         type: SINGLE_PRODUCT,
         payload: product,
+    }
+}
+
+export const productDisplayImage = (img) => {
+    return {
+        type: PRODUCT_DISPLAY_IMAGE,
+        payload: img,
     }
 }

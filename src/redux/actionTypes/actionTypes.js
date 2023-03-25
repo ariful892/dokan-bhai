@@ -6,7 +6,8 @@ export const SHOP_FILTER = 'SHOP_FILTER'
 
 //for you products
 export const FOR_YOU_PRODUCTS = "FOR_YOU_PRODUCTS";
-export const SINGLE_PRODUCT = "SINGLE_PRODUCT"
+export const SINGLE_PRODUCT = "SINGLE_PRODUCT";
+export const PRODUCT_DISPLAY_IMAGE = "PRODUCT_DISPLAY_IMAGE";
 
 //search action types
 export const SEARCH_INPUT = "SEARCH_INPUT";

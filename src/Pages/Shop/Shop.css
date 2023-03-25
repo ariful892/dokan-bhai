@@ -1,17 +1,20 @@
 .single-shop-container {
     background-color: #F0F5FA;
-    /* background-color: #000000; */
-    padding-top: 30px;
-    padding-left: 24px;
-    padding-right: 40px;
-    padding-bottom: 1000px;
+    padding-top: 90px;
+    /* padding-left: 24px;
+    padding-right: 40px; */
+    /* padding-bottom: 1000px; */
     overflow: hidden;
 
 }
 
 .shop-nav {
+    /* background-color: black;
+    color: white;
+    padding-top: 100px; */
     display: flex;
-    gap: 48px
+    gap: 48px;
+    padding-left: 12px;
 }
 
 .shop-nav-item {
@@ -40,10 +43,10 @@
 /* Mobile device */
 @media screen and (max-width:692px) {
     .single-shop-container {
-        width: 100%;
+        /* width: 100%;
         padding-left: 2.5%;
-        padding-right: 2.5%;
-        padding-top: 20px;
+        padding-right: 2.5%; */
+        /* padding-top: 20px; */
         /* overflow: hidden; */
     }
 
@@ -58,10 +61,10 @@
 @media only screen and (min-width:693px) and (max-width:1192px) {
 
     .single-shop-container {
-        width: 100%;
+        /* width: 100%;
         padding-left: 5%;
-        padding-right: 5%;
-        padding-top: 30px;
+        padding-right: 5%; */
+        /* padding-top: 30px; */
         /* overflow: hidden; */
     }
 }

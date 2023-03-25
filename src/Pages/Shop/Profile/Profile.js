@@ -11,7 +11,7 @@ import reply2 from '../../../assets/shop-page/profile/reply2.png';
 
 const Profile = () => {
     return (
-        <div className='single-shop-container'>
+        <div className='mt-12 mx-3 md:mx-8 lg:mx-12 mb-60'>
             <h2 className='shop-mall-name'>Jomuna Future Park</h2>
             <h2 className='shop-profile-name'>Bharatsthali</h2>
             <p className='shop-brand-type'>Clothing</p>

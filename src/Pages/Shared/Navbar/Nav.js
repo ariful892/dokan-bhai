@@ -103,7 +103,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                     <DocumentTextIcon className="h-6 w-6 " />
                     <ChatBubbleOvalLeftEllipsisIcon className="h-6 w-6 " />
                     <BellIcon className="h-6 w-6 " />
-                    <ShoppingCartIcon className="h-6 w-6 " />
+                    <Link to={'/cart'} className="h-6 w-6 "><ShoppingCartIcon /></Link>
                     {userInfo?.isSeller && <><button type="button" className='px-6
             py-2.5
             bg-[#D1DEEB]
@@ -118,7 +118,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                     {userInfo?.isAdmin && <><button type="button" className='px-6
             py-2.5
             bg-[#D1DEEB]
-            
+             
             font-semibold
             text-[16px]
             leading-tight
@@ -126,18 +126,19 @@ const Nav = ({ modalOpen, setModalOpen }) => {
             rounded
             shadow-md
              text-[#2B333B]'>Admin</button></>}
-                    {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1> <div><MdArrowDropDown className='peer' size={30} />  <div class="hidden  peer-hover:flex hover:flex
-         w-[200px]
-         flex-col bg-white drop-shadow-lg">
-                        <a onClick={signOutHandler} class="px-2 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
+                    {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1><div class="dropdown dropdown-hover">
+                        <label tabindex="0" class="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li className='ml-[-60px] shadow bg-base-100'><a onClick={signOutHandler} >Sign Out</a></li>
 
+                        </ul>
+                    </div>        </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div class="dropdown dropdown-hover">
+                        <label tabindex="0" class="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
+                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li className='ml-[-60px] shadow bg-base-100'><a onClick={signOutHandler} >Sign Out</a></li>
 
-                    </div></div> </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div><MdArrowDropDown className='' size={30} /> <div class="hidden peer-hover:flex hover:flex
-         w-[200px]
-         flex-col bg-white drop-shadow-lg">
-                        <a onClick={signOutHandler} class="px-5 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
-
-                    </div></div> </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" class="px-6
+                        </ul>
+                    </div>  </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" class="px-6
             py-2.5
             bg-[#D1DEEB]
             
@@ -154,7 +155,6 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                         Log in
                     </button></Link>}
 
-
                 </div>
 
 
@@ -166,14 +166,9 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
                     }
 
-
                 </div>
 
-
-
-
             </div>
-
 
             <div className={nav ? 'fixed left-0 top-[74px] w-full h-screen bg-black/80' : ''}>
                 <div className={nav ? 'fixed left-0 top-[74px] w-[70%] md:w-[25%] h-screen bg-[#FFFFFF]  ease-in-out duration-300' : 'fixed left-[-100%] top-[74px] w-[70%] md:w-[25%] h-screen bg-[#FFFFFF] ease-in duration-500'}>
@@ -198,13 +193,9 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
 
                                     </a>
-
-
-
                                 </div>
 
                             </div>
-
 
                         </div></>)}
 
@@ -213,7 +204,6 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                 </div>
 
             </div>
-
 
             <div className={!nav2 ? 'hidden' : 'absolute w-full bg-[#FFFFFF]  px-4 md:hidden'}>
 
@@ -224,23 +214,18 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                 <ShoppingCartIcon className="h-6 w-full border-b-2 border-zinc-300 my-[8px] " />
                 {(userInfo || userInfoRegister) ? <a onClick={signOutHandler} className=" " href="#"> <button className=' w-full px-6 py-2.5
             bg-[#D1DEEB]
-          
-            
             font-semibold
             text-[16px]
-            leading-tight
-            
+            leading-tight           
             rounded
             shadow-md
              text-[#2B333B] hover:bg-gray-200 md:mt-[50px]'>SignOut</button> </a> : <Link to='/login' ><button onClick={() => setModalOpen(true)} type="button" class="px-6
             py-2.5
             bg-[#D1DEEB]
-            w-full
-            
+            w-full          
             font-semibold
             text-[16px]
-            leading-tight
-            
+            leading-tight           
             rounded
             shadow-md
              text-[#2B333B]
@@ -250,7 +235,6 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                     Log in
                 </button></Link>}
             </div>
-
 
         </div>
     );

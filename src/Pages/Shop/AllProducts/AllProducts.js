@@ -30,7 +30,7 @@ const AllProducts = () => {
     const [filter, setFilter] = useState(false);
 
     return (
-        <div >
+        <div className='mx-3 md:mx-8 lg:mx-12 mb-60'>
 
             <div className="filter-shops-container">
                 <div className='filter-container'>

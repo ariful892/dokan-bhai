@@ -17,10 +17,10 @@ const Seller = () => {
 
     }, [dispatch, id])
     return (
-        <div className='bg-black h-max'>
+        <div className='bg-black h-max '>
             <ShopHome></ShopHome>
             <Products></Products>
-
+            <hr className='mt-[200px]' />
         </div>
     );
 };

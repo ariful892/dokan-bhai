@@ -18,6 +18,7 @@ import Header from './Pages/Shared/Navbar/Nav';
 import Seller from './Pages/Shop/ShopHome/Home/Seller';
 import SearchProducts from './Pages/Homepage/SearchProducts/SearchProducts';
 import Nav from './Pages/Shared/Navbar/Nav';
+import Carts from './Pages/Carts/Carts';
 
 
 
@@ -39,6 +40,7 @@ function App() {
             <Route path='signup' ></Route>
           </Route>
           <Route path='mall/:mallName' element={<ShoppingMall></ShoppingMall>}></Route>
+          <Route path='cart' element={<Carts></Carts>}></Route>
           <Route path='search' element={<SearchProducts></SearchProducts>}></Route>
           <Route path='details/:id' element={<SingleProductDetails></SingleProductDetails>}></Route>
           <Route path='shop' element={<Shop></Shop>}>
