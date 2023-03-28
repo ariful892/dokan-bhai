@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './ProductInfo.css'
-import productImg from '../../../../../assets/single-product/productimg.png';
-import product1 from '../../../../../assets/single-product/product1.png';
-import product2 from '../../../../../assets/single-product/product2.png';
-import product3 from '../../../../../assets/single-product/product3.png';
-import product4 from '../../../../../assets/single-product/product4.png';
-import product5 from '../../../../../assets/single-product/product5.png';
 import star from '../../../../../assets/single-product/icons/Star.png';
 import starlight from '../../../../../assets/single-product/icons/starlight.png';
 import heart from '../../../../../assets/single-product/icons/heart.png';
@@ -15,20 +9,12 @@ import DeliveryOption from './DeliveryOption/DeliveryOption';
 import { useParams } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
-
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
-import Grid from "@mui/material/Grid";
-import { Container } from "@mui/material";
-
-
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { useDispatch, useSelector } from 'react-redux';
 import loadSingleProductData from '../../../../../redux/thunk/products/fetchSingleProduct';
 import { productDisplayImage } from '../../../../../redux/actionCreators/productsForYouActions';
 import { toast } from 'react-toastify';
+import { addToDb, getStoredCart } from '../../../../../utilities/cartStorage';
 
 const ProductInfo = () => {
 
@@ -37,13 +23,15 @@ const ProductInfo = () => {
     const dispatch = useDispatch();
     const product = useSelector((state) => state.forYouProducts.singleProduct);
     const img = useSelector((state) => state.forYouProducts.displayImage);
-    const [pColor, setColor] = useState('');
-    // const [size, setSize] = useState('');
-    // const [quantity, setQuantity] = useState(0);
+    const { userInfo, loading2 } = useSelector((state) => state?.userSignin);
+    const [color, setColor] = useState("");
+    const [size, setSize] = useState("");
+    const [quantity, setQuantity] = useState(0);
+    // const [cartProduct, setCartProduct] = useState([]);
 
-    console.log(pColor)
-    // console.log('sz' + size)
-    // console.log('q' + quantity)
+    // console.log(color)
+    // console.log(size)
+    // console.log(quantity)
 
     useEffect(() => {
         dispatch(loadSingleProductData(id));
@@ -87,36 +75,71 @@ const ProductInfo = () => {
         dispatch(productDisplayImage(imageUrl))
     }
 
-    // const part = {
-    //     name,
-    //     description,
-    //     price,
-    //     minimumOrder,
-    //     availableQuantity,
-    //     img
+
+    // let userName;
+    // if(userInfo){
+    //     userName
     // }
+    let newCart;
 
-    // console.log(part);
+    const handleAddtoCart = () => {
+        const userName = userInfo ? userInfo.name : 'guest';
+        // console.log(userName)
+        const cart = {
+            productID: id,
+            name: product.name,
+            img: img,
+            color: color,
+            size: size,
+            quantity: parseInt(quantity),
+            material: product?.material,
+            username: userName,
+        }
 
-    // send review to database
-    // fetch('http://localhost:5000/cart', {
-    //     method: 'POST',
-    //     headers: {
-    //         'content-type': 'application/json',
-    //         // authorization: `Bearer ${localStorage.getItem('accessToken')}`
-    //     },
-    //     body: JSON.stringify()
-    // })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if (data.insertedId) {
-    //             toast.success('Product is added');
-    //             // reset();
-    //         }
-    //         else (
-    //             toast.error('Failed to add')
-    //         )
-    //     })
+        // console.log(cart);
+
+        const cartProduct = getStoredCart();
+        console.log(cartProduct)
+
+
+        if (cartProduct.length) {
+            newCart = [...cartProduct, cart];
+            addToDb(newCart);
+            // setCartProduct(newCart);
+        }
+        else {
+            newCart = [cart];
+            console.log(newCart)
+            addToDb(newCart);
+        }
+
+
+        // console.log(newCart);
+
+
+        // send cart to database
+        // fetch('http://localhost:5000/cart', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        //     },
+        //     body: JSON.stringify(cart)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.insertedId) {
+        //             toast.success('Product is added');
+        //             // reset();
+        //         }
+        //         else (
+        //             toast.error('Failed to add')
+        //         )
+        //     })
+
+
+    }
+
 
 
     return (
@@ -189,13 +212,14 @@ const ProductInfo = () => {
                             <div>
                                 {product?.color && <div>
                                     <span className='text-lg mr-1'>Color:</span>
-                                    <select className='ml-10 p-2 rounded-md w-40' name="color" id="color">
+                                    <select onChange={(e) => setColor(e.target.value)} className='ml-10 p-2 rounded-md w-40' name="color" id="color">
                                         <option  >Choose color
                                         </option>
 
                                         {product?.color.split(',').map(c =>
-                                            <option onClick={(e) => setColor(e.target
-                                                .value)} value={c}>{c}</option>
+                                            <option
+                                                value={c}
+                                            >{c}</option>
                                         )}
 
                                     </select>
@@ -206,12 +230,15 @@ const ProductInfo = () => {
                             <div className='mt-2'>
                                 {product?.size && <div>
                                     <span className='text-lg mr-1'>Size:</span>
-                                    <select className='ml-12 p-2 rounded-md w-40' name="size" id="size">
+                                    <select onClick={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40' name="size" id="size">
                                         <option  >Choose size
                                         </option>
 
                                         {product?.size.split(',').map(s =>
-                                            <option value={s}>{s}</option>
+                                            <option
+                                                value={s}
+
+                                            >{s}</option>
                                         )}
 
 
@@ -225,13 +252,16 @@ const ProductInfo = () => {
                             <div className='mt-2'>
                                 {product?.countInStock && <div>
                                     <span className='text-lg'>Quantity:</span>
-                                    <select className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity">
+                                    <select onClick={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity">
                                         <option >Choose Quantity
                                         </option>
                                         {(() => {
                                             let option = [];
                                             for (let i = 1; i <= product?.countInStock; i++) {
-                                                option.push(<option value={i}>{i}</option>)
+                                                option.push(<option
+                                                    value={i}
+
+                                                >{i}</option>)
                                             }
                                             return option;
                                         })()}
@@ -257,7 +287,10 @@ const ProductInfo = () => {
 
                             <div className='button-container'>
                                 <button className='btn-red'>Buy Now</button>
-                                <button className='btn-gray'>Add to Cart</button>
+                                <button
+                                    className='btn-gray'
+                                    onClick={handleAddtoCart}
+                                >Add to Cart</button>
                             </div>
                         </div>
                         {/* <div className='heart-icon-container'>

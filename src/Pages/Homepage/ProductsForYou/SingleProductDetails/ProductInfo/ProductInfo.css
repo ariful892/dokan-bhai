@@ -125,6 +125,10 @@
     margin-right: 16px;
 }
 
+.btn-red:hover {
+    background: #d6231f;
+}
+
 .btn-gray {
     padding: 8px 24px;
     gap: 10px;
@@ -137,6 +141,10 @@
     line-height: 24px;
     text-align: center;
     letter-spacing: 0.02em;
+}
+
+.btn-gray:hover {
+    background: #a9abad;
 }
 
 .heart-icon-container {

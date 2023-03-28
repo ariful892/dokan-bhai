@@ -135,18 +135,18 @@ const Navbar = ({ modalOpen, setModalOpen }) => {
             rounded
             shadow-md
              text-[#2B333B]'>Admin</button></>}
-                        {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1> <div><MdArrowDropDown className='peer' size={30} />  <div class="hidden  peer-hover:flex hover:flex
+                        {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1> <div><MdArrowDropDown className='peer' size={30} />  <div className="hidden  peer-hover:flex hover:flex
          w-[200px]
          flex-col bg-white drop-shadow-lg">
-                            <a onClick={signOutHandler} class="px-2 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
+                            <a onClick={signOutHandler} className="px-2 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
 
 
-                        </div></div> </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div><MdArrowDropDown className='' size={30} /> <div class="hidden peer-hover:flex hover:flex
+                        </div></div> </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div><MdArrowDropDown className='' size={30} /> <div className="hidden peer-hover:flex hover:flex
          w-[200px]
          flex-col bg-white drop-shadow-lg">
-                            <a onClick={signOutHandler} class="px-5 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
+                            <a onClick={signOutHandler} className="px-5 py-3 hover:bg-gray-200 mt-[50px]" href="#">Sign Out</a>
 
-                        </div></div> </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" class="px-6
+                        </div></div> </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" className="px-6
             py-2.5
             bg-[#D1DEEB]
             

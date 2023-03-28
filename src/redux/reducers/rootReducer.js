@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { userRegisterReducer, userSigninReducer } from "./authReducer";
+import cartReducer from "./cartReducer";
 import navbarReducer from "./navbarReducer";
 import { forProductsReducer } from "./productsForYouReducer";
 import productsReducer from "./productsReducer";
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     user: shopHompageReducer,
     productsReducer: productsReducer,
     searchProduct: searchInputReducer,
+    cartProduct: cartReducer,
 });
 
 export default rootReducer;

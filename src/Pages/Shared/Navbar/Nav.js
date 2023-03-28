@@ -63,12 +63,12 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
 
     if (loading1 || loading2) {
-        return <div class="flex items-center justify-center">
+        return <div className="flex items-center justify-center">
             <div
-                class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                 role="status">
                 <span
-                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
                 >Loading...</span
                 >
             </div>
@@ -126,19 +126,19 @@ const Nav = ({ modalOpen, setModalOpen }) => {
             rounded
             shadow-md
              text-[#2B333B]'>Admin</button></>}
-                    {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1><div class="dropdown dropdown-hover">
-                        <label tabindex="0" class="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
-                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    {(userInfo && <> <div className='flex justify-center items-center'> <h1 className='text-[25px] font-medium '>{userInfo?.name}</h1><div className="dropdown dropdown-hover">
+                        <label tabindex="0" className="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
+                        <ul tabindex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li className='ml-[-60px] shadow bg-base-100'><a onClick={signOutHandler} >Sign Out</a></li>
 
                         </ul>
-                    </div>        </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div class="dropdown dropdown-hover">
-                        <label tabindex="0" class="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
-                        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    </div>        </div> </>) || (userInfoRegister && <><div className='flex justify-center items-center'><h1 className='text-[25px] font-medium '>{userInfoRegister?.name}</h1> <div className="dropdown dropdown-hover">
+                        <label tabindex="0" className="inline-flex flex-shrink-0 cursor-pointer flex-wrap items-center justify-center bg-transparent  m-1"><div><MdArrowDropDown className='' size={30} /> </div></label>
+                        <ul tabindex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li className='ml-[-60px] shadow bg-base-100'><a onClick={signOutHandler} >Sign Out</a></li>
 
                         </ul>
-                    </div>  </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" class="px-6
+                    </div>  </div></>) || <Link to='/login'><button onClick={() => setModalOpen(true)} type="button" className="px-6
             py-2.5
             bg-[#D1DEEB]
             
@@ -211,7 +211,8 @@ const Nav = ({ modalOpen, setModalOpen }) => {
                 <DocumentTextIcon className="h-6 w-full border-b-2 border-zinc-300 my-[8px] " />
                 <ChatBubbleOvalLeftEllipsisIcon className="h-6 w-full border-b-2 border-zinc-300 my-[8px]   " />
                 <BellIcon className="h-6 w-full  border-b-2 border-zinc-300  my-[8px]" />
-                <ShoppingCartIcon className="h-6 w-full border-b-2 border-zinc-300 my-[8px] " />
+                <Link to={'/cart'} className="border-b-2 border-zinc-300 my-[8px] ">  <ShoppingCartIcon className='h-6 w-full ' /></Link>
+
                 {(userInfo || userInfoRegister) ? <a onClick={signOutHandler} className=" " href="#"> <button className=' w-full px-6 py-2.5
             bg-[#D1DEEB]
             font-semibold
@@ -219,7 +220,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
             leading-tight           
             rounded
             shadow-md
-             text-[#2B333B] hover:bg-gray-200 md:mt-[50px]'>SignOut</button> </a> : <Link to='/login' ><button onClick={() => setModalOpen(true)} type="button" class="px-6
+             text-[#2B333B] hover:bg-gray-200 md:mt-[50px]'>SignOut</button> </a> : <Link to='/login' ><button onClick={() => setModalOpen(true)} type="button" className="px-6
             py-2.5
             bg-[#D1DEEB]
             w-full          

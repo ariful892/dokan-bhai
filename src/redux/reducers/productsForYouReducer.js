@@ -4,6 +4,7 @@ const initialState = {
     products: [],
     singleProduct: {},
     displayImage: '',
+    cartProducts: [],
 };
 
 export const forProductsReducer = (state = initialState, action) => {
@@ -16,13 +17,29 @@ export const forProductsReducer = (state = initialState, action) => {
             }
         case SINGLE_PRODUCT:
             // console.log(action.payload.image.split(',')[0])
+            let product;
+            if (state.cartProducts.length) {
+                if (state?.cartProducts.map(p => p._id === action.payload._id)) {
+                    product = {};
+                }
+                else {
+                    product = action.payload;
+                }
+            }
+            if (!state.cartProducts.length) {
+                product = action.payload;
+            }
+            // const product = state.cartProducts.filter(p => p._id === action.payload._id);
+            // console.log(product)
             return {
                 ...state,
                 singleProduct: action.payload,
-                displayImage: `https://brandatoz.com${action.payload.image.split(',')[0]}`
+                displayImage: `https://brandatoz.com${action.payload.image.split(',')[0]}`,
+                // cartProducts: state.cartProducts.length ? state?.cartProducts.map(p => p._id === action.payload._id) ? state : [...state.cartProducts, action.payload] : [...state.cartProducts, action.payload],
+                cartProducts: [...state.cartProducts, product]
             }
         case PRODUCT_DISPLAY_IMAGE:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 displayImage: action.payload,
