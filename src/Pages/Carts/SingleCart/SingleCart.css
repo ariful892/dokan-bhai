@@ -6,8 +6,19 @@
     margin: auto;
     padding: 8px;
     margin-bottom: 20px;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: space-between;
     padding-bottom: 8px;
+}
+
+.cart-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.icon {
+    color: white;
 }
 
 

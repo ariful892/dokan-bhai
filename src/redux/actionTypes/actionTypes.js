@@ -1,8 +1,12 @@
 export const SIDE_NAVBAR = "SIDE_NAVBAR";
+export const FETCHING_START = "FETCHING_START";
 export const LOAD_SHOPPING_MALLS = "LOAD_SHOPPING_MALLS";
 export const LOAD_SHOPS = "LOAD_SHOPS";
 export const LOAD_FILTERED_SHOPS = "LOAD_FILTERED_SHOPS";
 export const SHOP_FILTER = 'SHOP_FILTER'
+
+//featured categories action types
+export const FEATURED_CATEGORIES = "FEATURED_CATEGORIES";
 
 //for you products
 export const FOR_YOU_PRODUCTS = "FOR_YOU_PRODUCTS";

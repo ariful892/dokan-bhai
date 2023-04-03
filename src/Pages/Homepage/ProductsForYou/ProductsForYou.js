@@ -12,7 +12,7 @@ const ProductsForYou = () => {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.forYouProducts.products);
 
-    console.log(products)
+    // console.log(products)
 
     useEffect(() => {
         dispatch(loadProductsForYouData())
@@ -28,7 +28,7 @@ const ProductsForYou = () => {
         return <Loading></Loading>
     }
 
-    console.log(allProducts)
+    // console.log(allProducts)
 
     // const forYouProducts = allProducts.products.slice(0, 16);
 

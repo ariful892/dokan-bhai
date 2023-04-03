@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { userRegisterReducer, userSigninReducer } from "./authReducer";
 import cartReducer from "./cartReducer";
+import featuredReducer from "./featuredReducer";
 import navbarReducer from "./navbarReducer";
 import { forProductsReducer } from "./productsForYouReducer";
 import productsReducer from "./productsReducer";
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     productsReducer: productsReducer,
     searchProduct: searchInputReducer,
     cartProduct: cartReducer,
+    featuredReducer: featuredReducer,
 });
 
 export default rootReducer;

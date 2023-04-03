@@ -69,9 +69,9 @@
 
 }
 
-.mall-img {
-    width: 100%;
-    height: 184px;
+.shopping-mall-img {
+    width: 450px;
+    height: 250px;
     border-radius: 8px;
     margin-left: 84px;
 }
@@ -275,8 +275,9 @@
         width: 50%;
     }
 
-    .mall-img {
-        height: 184px;
+    .shopping-mall-img {
+        width: 100%;
+        height: 190px;
         border-radius: 8px;
         margin-left: 0;
         margin-top: 16px;
@@ -384,8 +385,9 @@
         width: 50%;
     }
 
-    .mall-img {
-        height: 184px;
+    .shopping-mall-img {
+        width: 360px;
+        height: 240px;
         margin-left: 24px;
     }
 

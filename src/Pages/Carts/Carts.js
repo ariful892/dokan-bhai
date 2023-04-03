@@ -9,28 +9,34 @@ import './Carts.css'
 import { getStoredCart } from '../../utilities/cartStorage';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { loadCartProducts } from '../../redux/actionCreators/cartActions';
 
 const Carts = () => {
 
-    // const dispatch = useDispatch();
-    // const carts = useSelector((state) => state.cartProduct.carts);
+    // const [carts, setCarts] = useState([]);
+    const dispatch = useDispatch();
+    const carts = useSelector((state) => state.cartProduct.carts);
 
-    // useEffect(() => {
-    //     dispatch(loadCartProductsData())
-    // }, [dispatch])
+    // console.log('carts');
+    // console.log(carts);
 
     const cartProduct = getStoredCart();
     let cartContent;
-    console.log(cartProduct);
+    useEffect(() => {
+        dispatch(loadCartProducts(cartProduct))
+    }, [dispatch])
 
-    if (cartProduct.length) {
+
+    if (carts.length) {
         cartContent = <div>
             <h2 className='text-2xl text-center mb-5'>Your added Product </h2>
             <div className=' w-full'>
                 {
-                    cartProduct.map(cart => <SingleCart
+                    carts.map(cart => <SingleCart
                         key={cart._id}
                         cart={cart}
+                    // carts={carts}
+                    // setCarts={setCarts}
                     ></SingleCart>
                     )
                 }

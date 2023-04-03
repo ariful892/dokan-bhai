@@ -33,74 +33,18 @@ const ShoppingMall = () => {
     const dispatch = useDispatch();
     const allSellers = useSelector((state) => state.shoppingmall.filteredShops);
 
-    // console.log(allSellers)
-    // const { isLoading, error, data: allSellers, refetch } = useQuery('sellers', () =>
-    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers').then(res =>
-    //         res.json()
-    //     )
-    // )
-
-    // useEffect(() => {
-    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/users/all-sellers')
-    //         .then(res => res.json())
-    //         .then(data => dispatch(loadShops(data)))
-    // }, [dispatch])
 
     useEffect(() => {
         dispatch(loadShopData(mallName))
     }, [dispatch, mallName])
 
-    // const shops = allSellers.filter(seller => seller.seller.marketName === mallName);
 
-    // const [filterFloor, setFilterFloor] = useState(allSellers);
-
-
-
-    // const shopClick = (id) => {
-    //     dispatch(createShopHomePAge(id))
-    //     dispatch(getProducts(id))
-    //     navigate(`/shop/home/${id}`)
-
-
-
-    // }
     console.log(floorNo);
     let shopContent;
 
-    // if (allSellers && !floorNo) {
-    //     setFilterFloor(allSellers);
-    // }
-
-
-
     const handleFloorFilter = (floor) => {
-        // const data = { allSellers, floor }
 
         dispatch(filterShop(floor))
-        // shopContent = allSellers.filter(shop => shop.seller.floorNo === floor);
-        // .map(shop =>
-        //     <Link
-        //         to={`/shop/home/${shop._id}`}
-        //         // onClick={() => shopClick(shop._id)}
-        //         className="shop"
-        //         key={shop._id}
-        //     >
-        //         <img className='shop-image' src={`https://brandatoz.com${shop.seller.logo.split(",")[0]}`} alt="" />
-        //         <div className="shop-details">
-        //             <h2 className='shop-title'>{shop.seller.shopName}</h2>
-        //             <p className='type'>{shop.seller.description}</p>
-        //             <div className=' shop-floor'>
-        //                 <img className='floor-icon' src={floorIcon} alt="" />
-        //                 <span className='floor-no'>Floor no <span>{shop.seller.floorNo}</span></span>
-        //             </div>
-        //         </div>
-        //     </Link>)
-
-
-        // console.log(allSellers.filter(shop => shop.seller.floorNo === floor))
-        // console.log(floor)
-
-        // setFilterFloor(shopContent);
 
     }
 
@@ -119,7 +63,7 @@ const ShoppingMall = () => {
                     </div>
                 </div>
                 <div>
-                    <img className='mall-img' src={`https://brandatoz.com/images/dokans/${mallName.split(" ").join("_")}.png`} alt="" />
+                    <img className='shopping-mall-img' src={`https://brandatoz.com/images/dokans/${mallName.split(" ").join("_")}.png`} alt="" />
                 </div>
             </div>
 

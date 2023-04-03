@@ -21,6 +21,7 @@ import Modal from '../../Login/LoginModal/Modal';
 import { signout } from '../../../redux/actionCreators/authActions';
 import Loading from '../Loading/Loading';
 import { useQuery } from 'react-query';
+import loadFeaturedCategoriesData from '../../../redux/thunk/featuredCategories/fetchFeaturedCategories';
 
 
 const Nav = ({ modalOpen, setModalOpen }) => {
@@ -33,23 +34,22 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
     const { userInfoRegister, loading1 } = useSelector((state) => state?.userRegister);
 
-    // const state = useSelector((state) => state?.list?.list)
-    // console.log(state);
+    const featuredCategories = useSelector((state) => state.featuredReducer.featuredCategories)
+    // console.log(featuredCategories);
 
-    // useEffect(() => {
-    //     dispatch(createList())
-    // }, [])
+    useEffect(() => {
+        dispatch(loadFeaturedCategoriesData())
+    }, [])
 
-    const { isLoading, error, data: featuredCategories } = useQuery('categories', () =>
-        fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/add/category').then(res =>
-            res.json()
-        )
-    )
+    // const { isLoading, error, data: featuredCategories } = useQuery('categories', () =>
+    //     fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/add/category').then(res =>
+    //         res.json()
+    //     )
+    // )
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
-
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
 
     const handleNav = () => {
         setNav(!nav)
@@ -76,10 +76,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
     }
 
 
-
     return (
-
-
 
         <div className='w-screen h-[72px] fixed z-10 bg-[#FFFFFF]  drop-shadow-[0_3px_5px_rgba(0,0,0,0.07)]'>
             {modalOpen && <Modal setOpenModal={setModalOpen}></Modal>}
@@ -182,7 +179,9 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
                         </div>
 
-                        {featuredCategories.map((s) => <><div className='flex flex-col mt-[25px] space-y-1 '>
+                        {featuredCategories.map((s, index) => <div
+                            key={index + 1}
+                            className='flex flex-col mt-[25px] space-y-1 '>
 
                             <div className='flex justify-between items-center'>
                                 <div className='flex justify-start items-center space-x-3 text-sm'>
@@ -197,7 +196,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
                             </div>
 
-                        </div></>)}
+                        </div>)}
 
                     </div>
 

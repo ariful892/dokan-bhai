@@ -15,6 +15,7 @@ import loadSingleProductData from '../../../../../redux/thunk/products/fetchSing
 import { productDisplayImage } from '../../../../../redux/actionCreators/productsForYouActions';
 import { toast } from 'react-toastify';
 import { addToDb, getStoredCart } from '../../../../../utilities/cartStorage';
+import { loadingAction } from '../../../../../redux/actionCreators/shoppingmallActions';
 
 const ProductInfo = () => {
 
@@ -22,6 +23,7 @@ const ProductInfo = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const product = useSelector((state) => state.forYouProducts.singleProduct);
+    const loading = useSelector((state) => state.forYouProducts.loading);
     const img = useSelector((state) => state.forYouProducts.displayImage);
     const { userInfo, loading2 } = useSelector((state) => state?.userSignin);
     const [color, setColor] = useState("");
@@ -29,11 +31,13 @@ const ProductInfo = () => {
     const [quantity, setQuantity] = useState(0);
     // const [cartProduct, setCartProduct] = useState([]);
 
-    // console.log(color)
+    console.log(loading)
+    // console.log(product)
     // console.log(size)
     // console.log(quantity)
 
     useEffect(() => {
+        dispatch(loadingAction());
         dispatch(loadSingleProductData(id));
     }, [])
 
@@ -42,7 +46,7 @@ const ProductInfo = () => {
             .then(res => res.json())
     )
 
-    if (isLoading) {
+    if (loading || isLoading) {
         return <Loading></Loading>
     }
 
@@ -58,8 +62,11 @@ const ProductInfo = () => {
     //     setDisplayImage(`https://brandatoz.com${productImg[0]}`)
     // }
 
-    const productImagesList = product.image.split(',');
-    let productImages;
+    let productImagesList, productImages;
+    if (product) {
+        productImagesList = product.image.split(',');
+    }
+
 
     if (productImagesList.length < 5) {
         productImages = productImagesList.reverse().slice(1);
@@ -72,6 +79,7 @@ const ProductInfo = () => {
     const handleDisplayImage = img => {
         const imageUrl = `https://brandatoz.com${img}`;
         // console.log(imageUrl)
+        dispatch(loadingAction());
         dispatch(productDisplayImage(imageUrl))
     }
 
@@ -93,6 +101,7 @@ const ProductInfo = () => {
             size: size,
             quantity: parseInt(quantity),
             material: product?.material,
+            price: product.price,
             username: userName,
         }
 
@@ -216,8 +225,9 @@ const ProductInfo = () => {
                                         <option  >Choose color
                                         </option>
 
-                                        {product?.color.split(',').map(c =>
+                                        {product?.color.split(',').map((c, index) =>
                                             <option
+                                                key={index + 1}
                                                 value={c}
                                             >{c}</option>
                                         )}
@@ -234,8 +244,9 @@ const ProductInfo = () => {
                                         <option  >Choose size
                                         </option>
 
-                                        {product?.size.split(',').map(s =>
+                                        {product?.size.split(',').map((s, index) =>
                                             <option
+                                                key={index + 1}
                                                 value={s}
 
                                             >{s}</option>
