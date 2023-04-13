@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { getStoredCart } from '../../utilities/cartStorage';
 import './Checkout.css'
+import postOrderData from '../../redux/thunk/order/postOrder';
+import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
 
@@ -11,22 +14,102 @@ const Checkout = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [term, setTerm] = useState(false);
 
-    // console.log(productID)
+    // const { isLoading, error, data: orders, refetch } = useQuery('orders', () =>
+    //     fetch(`http://dev.backend.dokanbhai.com:3003/api/orders`)
+    //         .then(res => res.json())
+    // )
+
+    // console.log(orders)
+
     const cartProduct = getStoredCart();
     // console.log(cartProduct);
     let product, totalPrice, shipping = 0, tax = 0, orderTotal;
 
     if (cartProduct.length) {
-        product = cartProduct.filter(p => p.productID === productID);
+        product = cartProduct.filter(p => p.product === productID);
         // console.log(product);
 
-        totalPrice = product[0].quantity * product[0].price;
+        totalPrice = product[0].qty * product[0].price;
         orderTotal = totalPrice + shipping + tax;
         // console.log(orderTotal)
     }
 
     const onSubmit = async data => {
-        console.log(data)
+
+        const order = {
+            cartItems: [
+                {
+                    clr: product[0].clr,
+                    sz: product[0].sz,
+                    image: product[0].image,
+                    name: product[0].name,
+                    seller: product[0].seller,
+                    product: product[0].product,
+                    qty: product[0].qty,
+                    price: product[0].price,
+                    tenPercentage: product[0].tenPercentage,
+
+                }
+            ],
+            itemsPrice: product[0].price,
+            orderItems: [
+                {
+                    clr: product[0].clr,
+                    sz: product[0].sz,
+                    image: product[0].image,
+                    name: product[0].name,
+                    seller: product[0].seller,
+                    product: product[0].product,
+                    qty: product[0].qty,
+                    price: product[0].price,
+                    tenPercentage: product[0].tenPercentage,
+
+                }
+            ],
+            paymentMethod: data.payment,
+            shippingAddress: {
+                fullName: data.name,
+                email: data.email,
+                phnNo: data.phone,
+                address: data.address,
+                city: data.district,
+                area: data.area,
+                // shippingAddress: `district: ${data.district}, area:${data.area}, Full address: ${data.address}`,
+                shippingCostCSV: '130',
+
+            },
+            shippingPrice: shipping,
+            taxPrice: tax,
+            totalPrice: orderTotal,
+            userInfo: null,
+
+        }
+        console.log(order)
+
+        // send order to database
+        fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // if (data.insertedId) {
+                if (data) {
+                    console.log(data)
+                    toast.success('Order is done');
+                    // reset();
+                }
+                else (
+                    // console.log(data);
+                    toast.error('Failed to order')
+                )
+            })
+
+        // postOrderData(order);
     }
 
     return (
@@ -150,16 +233,16 @@ const Checkout = () => {
                         <input type="text"
                             placeholder='Enter Email Address'
                             className="input input-bordered w-full h-10"
-                            {...register("email", {
-                                required: {
-                                    value: true,
-                                    message: 'Email Address is Required'
-                                }
-                            })}
+                        // {...register("email", {
+                        //     required: {
+                        //         value: true,
+                        //         message: 'Email Address is Required'
+                        //     }
+                        // })}
                         />
-                        <label className="label">
+                        {/* <label className="label">
                             {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
-                        </label>
+                        </label> */}
                     </div>
 
                     <h2 className='text-2xl font-bold mt-4'>Payment Method</h2>
@@ -185,15 +268,15 @@ const Checkout = () => {
 
                     <div className='flex  gap-5 lg:gap-8 items-center mt-5'>
                         <div className="w-16">
-                            <img className='rounded-lg' src={product[0].img} alt='' />
+                            <img className='rounded-lg' src={product[0].image} alt='' />
                         </div>
 
                         <div>
                             <h2 className='font-bold'>{product[0].name}</h2>
-                            <p className=''>Quantity: {product[0].quantity}</p>
+                            <p className=''>Quantity: {product[0].qty}</p>
                         </div>
 
-                        <p><span>{product[0].quantity} x BDT{product[0].price} = BDT {totalPrice}</span></p>
+                        <p><span>{product[0].qty} x BDT{product[0].price} = BDT {totalPrice}</span></p>
                     </div>
 
                     <div className='mt-5'>

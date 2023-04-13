@@ -8,19 +8,27 @@ import starlight from '../../../assets/icons/starlight.png';
 import heart from '../../../assets/icons/heart.png';
 import { searchInput } from '../../../redux/actionCreators/searchAction';
 import loadSearchProducts from '../../../redux/thunk/products/fetchSearchProducts';
+import { loadingAction } from '../../../redux/actionCreators/shoppingmallActions';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const SearchProducts = () => {
 
     const searchData = useSelector((state) => state.searchProduct);
+    const loading = useSelector((state) => state.searchProduct.loading);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(searchData)
+    console.log(loading)
 
     useEffect(() => {
+        dispatch(loadingAction())
         dispatch(loadSearchProducts(searchData.input))
     }, [])
+
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     const handleProductDetails = (id) => {
         console.log(id)
@@ -37,6 +45,7 @@ const SearchProducts = () => {
         if (event.key === 'Enter') {
             // 👇 Get input value
             dispatch(searchInput(searchText))
+            dispatch(loadingAction())
             dispatch(loadSearchProducts(searchData.input))
             //   setUpdated(message);
         }

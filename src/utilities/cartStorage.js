@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 // use local storage to manage cart data
 const addToDb = cart => {
 
-    console.log(cart)
+    // console.log(cart)
 
     localStorage.setItem('shopping-cart', JSON.stringify(cart));
     toast.success('Product is added');
@@ -26,7 +26,7 @@ const getStoredCart = () => {
 }
 
 const removeFromDb = newCart => {
-    console.log(newCart)
+    // console.log(newCart)
     localStorage.setItem('shopping-cart', JSON.stringify(newCart));
 }
 

@@ -5,11 +5,11 @@ const initialState = {
 };
 
 const cartReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case LOAD_CART_PRODUCTS:
             return {
-                ...state,
-                carts: action.payload
+                carts: action.payload,
             }
         default:
             return state;

@@ -10,21 +10,29 @@ import { getStoredCart } from '../../utilities/cartStorage';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { loadCartProducts } from '../../redux/actionCreators/cartActions';
+import { loadingAction } from '../../redux/actionCreators/shoppingmallActions';
 
 const Carts = () => {
 
     // const [carts, setCarts] = useState([]);
     const dispatch = useDispatch();
     const carts = useSelector((state) => state.cartProduct.carts);
+    const loading = useSelector((state) => state.forYouProducts.loading);
 
     // console.log('carts');
-    // console.log(carts);
+    console.log(carts);
 
     const cartProduct = getStoredCart();
+    // console.log(cartProduct)
     let cartContent;
     useEffect(() => {
+        // dispatch(loadingAction())
         dispatch(loadCartProducts(cartProduct))
     }, [dispatch])
+
+    // if (loading) {
+    //     return <Loading></Loading>
+    // }
 
 
     if (carts.length) {

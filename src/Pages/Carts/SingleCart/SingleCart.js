@@ -16,10 +16,10 @@ const SingleCart = (cart) => {
     const dispatch = useDispatch();
     const carts = useSelector((state) => state.cartProduct.carts);
 
-    // console.log(carts);
+    console.log(carts);
     // const products = useSelector((state) => state.forYouProducts.cartProducts);
 
-    // console.log(cart)
+    console.log(cart)
     // console.log(cart.cart.productID)
 
     // useEffect(() => {
@@ -43,7 +43,7 @@ const SingleCart = (cart) => {
         <div className="single-cart-container shadow-lg ">
             <div className='cart-info'>
                 <div className="w-28 ">
-                    <img className='rounded-lg' src={cart.cart.img} alt="" />
+                    <img className='rounded-lg' src={cart.cart.image} alt="" />
                 </div>
 
 
@@ -51,14 +51,14 @@ const SingleCart = (cart) => {
                     <h2 className='text-xl font-bold mb-.5 w-48 lg:w-full md:w-full'>{cart.cart.name}</h2>
                     {/* <p className='s-products-type'>{product.category}</p> */}
 
-                    <p className='text-md '>Color: {cart.cart.color}</p>
-                    <p className='text-md '>Size: {cart.cart.size}</p>
+                    <p className='text-md '>Color: {cart.cart.clr}</p>
+                    <p className='text-md '>Size: {cart.cart.sz}</p>
 
-                    <p className='text-md '>Quantity: {cart.cart.quantity}</p>
+                    <p className='text-md '>Quantity: {cart.cart.qty}</p>
 
                     <p className='text-md mb-1'>Price: {cart.cart.price}</p>
 
-                    <Link to={`/checkout/${cart.cart.productID}`} className=" font-medium uppercase bg-red-600 text-xs text-white h-6 px-3 py-1.5 rounded-md hover:bg-white hover:text-red-600 hover:border hover:border-red-600 ">Proceed to checkout</Link>
+                    <Link to={`/checkout/${cart.cart.product}`} className=" font-medium uppercase bg-red-600 text-xs text-white h-6 px-3 py-1.5 rounded-md hover:bg-white hover:text-red-600 hover:border hover:border-red-600 ">Proceed to checkout</Link>
                 </div>
 
             </div>

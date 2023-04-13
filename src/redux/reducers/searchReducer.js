@@ -1,8 +1,9 @@
-import { SEARCH_INPUT, SEARCH_PRODUCTS } from "../actionTypes/actionTypes";
+import { FETCHING_START, SEARCH_INPUT, SEARCH_PRODUCTS } from "../actionTypes/actionTypes";
 
 const initialState = {
     input: '',
     searchProducts: [],
+    loading: false,
 };
 
 const searchInputReducer = (state = initialState, action) => {
@@ -11,12 +12,18 @@ const searchInputReducer = (state = initialState, action) => {
             return {
                 ...state,
                 input: action.payload,
+                loading: false,
             }
         case SEARCH_PRODUCTS:
-            // if()
             return {
                 ...state,
                 searchProducts: action.payload,
+                loading: false,
+            }
+        case FETCHING_START:
+            return {
+                ...state,
+                loading: true,
             }
 
         default:

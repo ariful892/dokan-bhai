@@ -6,7 +6,7 @@ import heart from '../../../../../assets/single-product/icons/heart.png';
 import ProductDetails from './ProductDetails/ProductDetails';
 import DeliveryOption from './DeliveryOption/DeliveryOption';
 // import Zoom from 'react-img-zoom'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
@@ -16,12 +16,16 @@ import { productDisplayImage } from '../../../../../redux/actionCreators/product
 import { toast } from 'react-toastify';
 import { addToDb, getStoredCart } from '../../../../../utilities/cartStorage';
 import { loadingAction } from '../../../../../redux/actionCreators/shoppingmallActions';
+import { useForm } from 'react-hook-form';
+import { loadCartProducts } from '../../../../../redux/actionCreators/cartActions';
 
 const ProductInfo = () => {
 
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
     const product = useSelector((state) => state.forYouProducts.singleProduct);
     const loading = useSelector((state) => state.forYouProducts.loading);
     const img = useSelector((state) => state.forYouProducts.displayImage);
@@ -31,8 +35,8 @@ const ProductInfo = () => {
     const [quantity, setQuantity] = useState(0);
     // const [cartProduct, setCartProduct] = useState([]);
 
-    console.log(loading)
-    // console.log(product)
+    // console.log(loading)
+    console.log(product)
     // console.log(size)
     // console.log(quantity)
 
@@ -89,66 +93,207 @@ const ProductInfo = () => {
     //     userName
     // }
     let newCart;
+    let errorMessage;
+    // const handleAddtoCart = () => {
 
-    const handleAddtoCart = () => {
-        const userName = userInfo ? userInfo.name : 'guest';
-        // console.log(userName)
+    //     if (color === "" || size === "" || quantity === 0) {
+    //         console.log('please')
+    //         errorMessage = <label className=' '>Please reduce the quantity. The number of products isn't available at the moment</label>
+    //     }
+    //     else {
+    //         const userName = userInfo ? userInfo.name : 'guest';
+
+    //         const cart = {
+    //             productID: id,
+    //             name: product.name,
+    //             img: img,
+    //             color: color,
+    //             size: size,
+    //             quantity: parseInt(quantity),
+    //             material: product?.material,
+    //             price: product.price,
+    //             username: userName,
+    //         }
+
+    //         // console.log(cart);
+
+    //         const cartProduct = getStoredCart();
+    //         // console.log(cartProduct)
+
+
+    //         if (cartProduct.length) {
+    //             const addedCart = cartProduct.filter(c => c.productID === id);
+    //             console.log(addedCart);
+    //             if (addedCart.length) {
+    //                 toast.error('Already added')
+    //             }
+    //             else {
+    //                 newCart = [...cartProduct, cart];
+    //                 addToDb(newCart);
+    //                 // setCartProduct(newCart);
+
+
+    //                 // send cart to database
+    //                 fetch('http://localhost:5000/cart', {
+    //                     method: 'POST',
+    //                     headers: {
+    //                         'content-type': 'application/json',
+    //                         // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    //                     },
+    //                     body: JSON.stringify(cart)
+    //                 })
+    //                     .then(res => res.json())
+    //                     .then(data => {
+    //                         if (data.insertedId) {
+    //                             // toast.success('Product is added');
+    //                             // reset();
+    //                         }
+    //                         else (
+    //                             toast.error('Failed to add')
+    //                         )
+    //                     })
+
+    //             }
+
+    //         }
+    //         else {
+    //             newCart = [cart];
+    //             // console.log(newCart)
+    //             addToDb(newCart);
+
+
+    //             // send cart to database
+    //             fetch('http://localhost:5000/cart', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'content-type': 'application/json',
+    //                     // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    //                 },
+    //                 body: JSON.stringify(cart)
+    //             })
+    //                 .then(res => res.json())
+    //                 .then(data => {
+    //                     if (data.insertedId) {
+    //                         // toast.success('Product is added');
+    //                         // reset();
+    //                     }
+    //                     else (
+    //                         toast.error('Failed to add')
+    //                     )
+    //                 })
+
+
+    //         }
+    //     }
+
+    // }
+
+    const onSubmit = async data => {
+
+        // const userName = userInfo ? userInfo.name : 'guest';
+        let mainPrice;
+
+        if (product?.discounted_price) {
+            mainPrice = product.discounted_price;
+        }
+        else {
+            mainPrice = product.price;
+        }
+        console.log(mainPrice)
+
         const cart = {
-            productID: id,
+            product: id,
             name: product.name,
-            img: img,
-            color: color,
-            size: size,
-            quantity: parseInt(quantity),
-            material: product?.material,
-            price: product.price,
-            username: userName,
+            image: img,
+            countInStock: product.countInStock,
+            seller: product.seller,
+            clr: data.color,
+            sz: data.size,
+            qty: parseInt(data.quantity),
+            // material: product?.material,
+            price: mainPrice,
+            tenPercentage: false,
+            // username: userName,
         }
 
         // console.log(cart);
 
         const cartProduct = getStoredCart();
-        console.log(cartProduct)
+        // console.log(cartProduct)
 
 
         if (cartProduct.length) {
-            newCart = [...cartProduct, cart];
-            addToDb(newCart);
-            // setCartProduct(newCart);
+            const addedCart = cartProduct.filter(c => c.productID === id);
+            // console.log(addedCart);
+            if (addedCart.length) {
+                toast.error('Already added')
+            }
+            else {
+                newCart = [...cartProduct, cart];
+                console.log(newCart.length)
+                loadCartProducts(newCart);
+                addToDb(newCart);
+                // setCartProduct(newCart);
+
+
+                // send cart to database
+                fetch('http://localhost:5000/cart', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                        // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body: JSON.stringify(cart)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            // toast.success('Product is added');
+                            // reset();
+                        }
+                        else (
+                            toast.error('Failed to add')
+                        )
+                    })
+
+            }
+
         }
         else {
             newCart = [cart];
-            console.log(newCart)
+            // console.log(newCart)
+            loadCartProducts(newCart)
             addToDb(newCart);
+
+
+            // send cart to database
+            fetch('http://localhost:5000/cart', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    // authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(cart)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        // toast.success('Product is added');
+                        // reset();
+                    }
+                    else (
+                        toast.error('Failed to add')
+                    )
+                })
+
+
         }
-
-
-        // console.log(newCart);
-
-
-        // send cart to database
-        // fetch('http://localhost:5000/cart', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         // authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        //     },
-        //     body: JSON.stringify(cart)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.insertedId) {
-        //             toast.success('Product is added');
-        //             // reset();
-        //         }
-        //         else (
-        //             toast.error('Failed to add')
-        //         )
-        //     })
-
 
     }
 
+    const handleBuyNow = () => {
+        navigate(`/checkout/${id}`)
+    }
 
 
     return (
@@ -218,11 +363,130 @@ const ProductInfo = () => {
                         </div>
 
                         <div className='mt-10'>
-                            <div>
+
+                            <form onSubmit={handleSubmit(onSubmit)} >
+
+                                <div className="form-control">
+                                    {product?.color && <div>
+                                        <label className="">
+                                            <span className="label-text">Color:</span>
+                                        </label>
+                                        <select onChange={(e) => setColor(e.target.value)} className='ml-10 p-2 rounded-md w-40' name="color" id="color"
+                                            {...register("color", {
+                                                required: {
+                                                    value: true,
+                                                    message: 'Color is Required'
+                                                }
+                                            })}
+                                        >
+                                            <option value={""} >Choose Color
+                                            </option>
+
+                                            {product?.color.split(',').map((c, index) =>
+                                                <option
+                                                    key={index + 1}
+                                                    value={c}
+                                                >{c}</option>
+                                            )}
+                                        </select>
+
+                                        <label className="ml-2">
+                                            {errors.color?.type === 'required' && <span className="label-text-alt text-red-500">{errors.color.message}</span>}
+                                        </label>
+                                    </div>
+                                    }
+                                </div>
+
+                                <div className="form-control mt-2">
+                                    {product?.size && <div>
+                                        <label className="">
+                                            <span className="label-text">Size:</span>
+                                        </label>
+                                        <select onChange={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40' name="size" id="size"
+                                            {...register("size", {
+                                                required: {
+                                                    value: true,
+                                                    message: 'Size is Required'
+                                                }
+                                            })}
+                                        >
+                                            <option value={""} >Choose Size
+                                            </option>
+
+                                            {product?.size.split(',').map((s, index) =>
+                                                <option
+                                                    key={index + 1}
+                                                    value={s}
+
+                                                >{s}</option>
+                                            )}
+
+                                        </select>
+
+                                        <label className="ml-2">
+                                            {errors.size?.type === 'required' && <span className="label-text-alt text-red-500">{errors.size.message}</span>}
+                                        </label>
+                                    </div>
+                                    }
+                                </div>
+
+
+                                <div className="form-control mt-2">
+                                    {product?.countInStock && <div>
+                                        <label className="">
+                                            <span className="label-text">Quantity:</span>
+                                        </label>
+                                        <select onChange={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity"
+                                            {...register("quantity", {
+                                                required: {
+                                                    value: true,
+                                                    message: 'Quantity is Required'
+                                                }
+                                            })}
+                                        >
+                                            <option value="">Choose Quantity
+                                            </option>
+                                            {(() => {
+                                                let option = [];
+                                                for (let i = 1; i <= product?.countInStock; i++) {
+                                                    option.push(<option
+                                                        value={i}
+
+                                                    >{i}</option>)
+                                                }
+                                                return option;
+                                            })()}
+
+                                        </select>
+
+                                        <label className="ml-2">
+                                            {errors.quantity?.type === 'required' && <span className="label-text-alt text-red-500">{errors.quantity.message}</span>}
+                                        </label>
+                                    </div>
+                                    }
+                                </div>
+
+
+                                <div className="price-btn-container">
+                                    <p className="quantity">Available Quantity: <span>{product.countInStock}</span></p>
+                                    <h2 className="price">BDT <span>{product.price}</span></h2>
+
+                                    <div className='button-container'>
+                                        <button onClick={handleBuyNow} className='btn-red'>Buy Now</button>
+
+                                        <input
+                                            className='btn-gray' type="submit" value='Add to Cart' />
+
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            {/* <div>
                                 {product?.color && <div>
                                     <span className='text-lg mr-1'>Color:</span>
                                     <select onChange={(e) => setColor(e.target.value)} className='ml-10 p-2 rounded-md w-40' name="color" id="color">
-                                        <option  >Choose color
+                                        <option value={""} >Choose Color
                                         </option>
 
                                         {product?.color.split(',').map((c, index) =>
@@ -236,12 +500,12 @@ const ProductInfo = () => {
                                 </div>
                                 }
                             </div>
-
+                          
                             <div className='mt-2'>
                                 {product?.size && <div>
                                     <span className='text-lg mr-1'>Size:</span>
-                                    <select onClick={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40' name="size" id="size">
-                                        <option  >Choose size
+                                    <select onChange={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40' name="size" id="size">
+                                        <option value={""} >Choose Size
                                         </option>
 
                                         {product?.size.split(',').map((s, index) =>
@@ -258,13 +522,11 @@ const ProductInfo = () => {
                                 }
                             </div>
 
-
-
                             <div className='mt-2'>
                                 {product?.countInStock && <div>
                                     <span className='text-lg'>Quantity:</span>
-                                    <select onClick={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity">
-                                        <option >Choose Quantity
+                                    <select onChange={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity">
+                                        <option value={0}>Choose Quantity
                                         </option>
                                         {(() => {
                                             let option = [];
@@ -279,20 +541,10 @@ const ProductInfo = () => {
                                     </select>
                                 </div>
                                 }
-                            </div>
-
-                            {/* <div className='mt-2'>
-                                {product?.countInStock && <div>
-                                    <span className='text-lg'>Quantity:</span>
-
-                                    <input className='ml-5 p-2 rounded-md w-28' type="number" />
-
-                                </div>
-                                }
                             </div> */}
-
                         </div>
-                        <div className="price-btn-container">
+
+                        {/* <div className="price-btn-container">
                             <p className="quantity">Available Quantity: <span>{product.countInStock}</span></p>
                             <h2 className="price">BDT <span>{product.price}</span></h2>
 
@@ -303,7 +555,7 @@ const ProductInfo = () => {
                                     onClick={handleAddtoCart}
                                 >Add to Cart</button>
                             </div>
-                        </div>
+                        </div> */}
                         {/* <div className='heart-icon-container'>
                             <img className='heart-icon' src={heart} alt="" />
                         </div> */}
