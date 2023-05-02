@@ -78,7 +78,7 @@ const Nav = ({ modalOpen, setModalOpen }) => {
 
     return (
 
-        <div className='w-screen h-[72px] fixed z-10 bg-[#FFFFFF]  drop-shadow-[0_3px_5px_rgba(0,0,0,0.07)]'>
+        <div className='w-screen h-[72px] fixed z-20 bg-[#FFFFFF]  drop-shadow-[0_3px_5px_rgba(0,0,0,0.07)]'>
             {modalOpen && <Modal setOpenModal={setModalOpen}></Modal>}
 
             <div className='px-[24px] flex justify-between items-center w-full h-full '>

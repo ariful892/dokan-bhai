@@ -10,9 +10,9 @@ const SingleProductDetails = () => {
         <div className='products-info-container'>
             <div>
                 <ProductInfo></ProductInfo>
-                <Reviews></Reviews>
+                {/* <Reviews></Reviews>
                 <QandA></QandA>
-                <RelatedProducts></RelatedProducts>
+                <RelatedProducts></RelatedProducts> */}
             </div>
         </div>
     );

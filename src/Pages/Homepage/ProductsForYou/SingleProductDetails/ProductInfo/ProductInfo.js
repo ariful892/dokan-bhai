@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ProductInfo.css'
 import star from '../../../../../assets/single-product/icons/Star.png';
 import starlight from '../../../../../assets/single-product/icons/starlight.png';
 import heart from '../../../../../assets/single-product/icons/heart.png';
 import ProductDetails from './ProductDetails/ProductDetails';
 import DeliveryOption from './DeliveryOption/DeliveryOption';
-// import Zoom from 'react-img-zoom'
+
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
 import { useQuery } from 'react-query';
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import Zoom from 'react-img-zoom'
 import { useDispatch, useSelector } from 'react-redux';
 import loadSingleProductData from '../../../../../redux/thunk/products/fetchSingleProduct';
 import { productDisplayImage } from '../../../../../redux/actionCreators/productsForYouActions';
@@ -18,6 +19,12 @@ import { addToDb, getStoredCart } from '../../../../../utilities/cartStorage';
 import { loadingAction } from '../../../../../redux/actionCreators/shoppingmallActions';
 import { useForm } from 'react-hook-form';
 import { loadCartProducts } from '../../../../../redux/actionCreators/cartActions';
+import QuickLookModal from './QuickLookModal/QuickLookModal';
+import ZoomableImage from 'react-zoomable-img'
+import CursorZoom from 'react-cursor-zoom';
+import Hammer from "hammerjs";
+import ImageZoom from "react-medium-image-zoom";
+import PinchZoomPan from "react-responsive-pinch-zoom-pan";
 
 const ProductInfo = () => {
 
@@ -49,6 +56,8 @@ const ProductInfo = () => {
         fetch(`https://backend.dokanbhai.dokanbhai.com:3002/api/products/${id}`)
             .then(res => res.json())
     )
+
+
 
     if (loading || isLoading) {
         return <Loading></Loading>
@@ -301,32 +310,69 @@ const ProductInfo = () => {
 
             <div>
                 <div className='product-img-info'>
-                    <div className='product-img-container '>
+                    <div className='product-img-container'>
+
 
                         <div className='product-display-img'>
+
+                            {/* <ZoomableImage className='product-img-size' src={img} alt='some alt text' zoomScale={3} transitionDuration={0.5} /> */}
+
+                            {/* <CursorZoom
+                                image={{
+                                    src: img,
+                                    width: 400,
+                                    height: 480
+                                }}
+                                zoomImage={{
+                                    src: img,
+                                    width: 800,
+                                    height: 1200
+                                }}
+                                cursorOffset={{ x: 80, y: -80 }}
+                            /> */}
+
                             {/* <Zoom
-
-                                img={displayImage}
-
-                                // img={`https://brandatoz.com${productImages.reverse()[0]}`}
-
+                                className='product-img-size'
+                                img={img}
                                 zoomScale={3}
-                                width={460}
+                                width={480}
                                 height={423}
                             /> */}
+
                             {/* <img className='product-img-size' src={displayImage} alt="" /> */}
+
+
                             <TransformWrapper
                                 defaultScale={1}
                                 defaultPositionX={100}
                                 defaultPositionY={200}
+                                onWheel={true}
                             >
                                 <TransformComponent>
                                     <img className='product-img-size' src={img} alt="" />
                                 </TransformComponent>
                             </TransformWrapper>
 
-                            {/* <img className='product-img-size' src={`https://brandatoz.com${displayImage}`} alt="" />  */}
                         </div>
+
+
+                        {/* <div className='' style={{ width: '342px', height: '513px' }}> */}
+
+                        {/* <ReactImageMagnify {...{
+                                smallImage: {
+                                    alt: 'Wristwatch by Ted Baker London',
+                                    isFluidWidth: true,
+                                    src: img,
+                                },
+                                largeImage: {
+                                    src: img,
+                                    width: 1200,
+                                    height: 1800
+                                }
+                            }} /> */}
+                        {/* </div> */}
+
+
 
                         <div className='product-demo-img-container'>
                             {
@@ -371,7 +417,7 @@ const ProductInfo = () => {
                                         <label className="">
                                             <span className="label-text">Color:</span>
                                         </label>
-                                        <select onChange={(e) => setColor(e.target.value)} className='ml-10 p-2 rounded-md w-40' name="color" id="color"
+                                        <select onChange={(e) => setColor(e.target.value)} className='ml-10 p-2 rounded-md w-40 bg-white' name="color" id="color"
                                             {...register("color", {
                                                 required: {
                                                     value: true,
@@ -402,7 +448,7 @@ const ProductInfo = () => {
                                         <label className="">
                                             <span className="label-text">Size:</span>
                                         </label>
-                                        <select onChange={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40' name="size" id="size"
+                                        <select onChange={(e) => setSize(e.target.value)} className='ml-12 p-2 rounded-md w-40 bg-white' name="size" id="size"
                                             {...register("size", {
                                                 required: {
                                                     value: true,
@@ -436,7 +482,7 @@ const ProductInfo = () => {
                                         <label className="">
                                             <span className="label-text">Quantity:</span>
                                         </label>
-                                        <select onChange={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40' name="quantity" id="quantity"
+                                        <select onChange={(e) => setQuantity(e.target.value)} className='ml-5 p-2 rounded-md w-40 bg-white' name="quantity" id="quantity"
                                             {...register("quantity", {
                                                 required: {
                                                     value: true,
@@ -466,6 +512,16 @@ const ProductInfo = () => {
                                     }
                                 </div>
 
+                                <div className='w-60 mx-auto mt-8'>
+                                    <label htmlFor="my-modal-3" className='px-3 py-2 border-4 border-black-600 bg-white hover:bg-gray-100 rounded-md '>Quick Look</label>
+                                    <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+
+                                    <QuickLookModal
+                                        product={product}
+                                        img={img}
+                                    ></QuickLookModal>
+
+                                </div>
 
                                 <div className="price-btn-container">
                                     <p className="quantity">Available Quantity: <span>{product.countInStock}</span></p>
@@ -481,6 +537,8 @@ const ProductInfo = () => {
                                 </div>
 
                             </form>
+
+
 
                             {/* <div>
                                 {product?.color && <div>
