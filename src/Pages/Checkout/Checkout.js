@@ -1,18 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-import { getStoredCart } from '../../utilities/cartStorage';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getStoredCart, removeFromDb } from '../../utilities/cartStorage';
 import './Checkout.css'
 import postOrderData from '../../redux/thunk/order/postOrder';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadCartProducts } from '../../redux/actionCreators/cartActions';
 
 const Checkout = () => {
 
     const { productID } = useParams();
+    console.log(productID)
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [term, setTerm] = useState(false);
+    const carts = useSelector((state) => state.cartProduct.carts);
+    console.log(carts)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // const { isLoading, error, data: orders, refetch } = useQuery('orders', () =>
     //     fetch(`http://dev.backend.dokanbhai.com:3003/api/orders`)
@@ -86,6 +93,10 @@ const Checkout = () => {
         }
         console.log(order)
 
+        // const newCart = carts.filter(c => c.product !== productID);
+        // console.log('newCart')
+        // console.log(newCart)
+
         // send order to database
         fetch('https://backend.dokanbhai.dokanbhai.com:3002/api/orders', {
             method: 'POST',
@@ -100,8 +111,12 @@ const Checkout = () => {
                 // if (data.insertedId) {
                 if (data) {
                     console.log(data)
+                    const newCart = carts.filter(c => c.product !== productID);
+                    console.log(newCart)
+                    dispatch(loadCartProducts(newCart))
+                    removeFromDb(newCart)
                     toast.success('Order is done');
-                    // reset();
+                    navigate('/cart')
                 }
                 else (
                     // console.log(data);

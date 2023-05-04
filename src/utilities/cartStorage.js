@@ -26,7 +26,7 @@ const getStoredCart = () => {
 }
 
 const removeFromDb = newCart => {
-    // console.log(newCart)
+    console.log(newCart)
     localStorage.setItem('shopping-cart', JSON.stringify(newCart));
 }
 

@@ -19,11 +19,12 @@ const Carts = () => {
     const carts = useSelector((state) => state.cartProduct.carts);
     const loading = useSelector((state) => state.forYouProducts.loading);
 
-    // console.log('carts');
+    console.log('carts');
     console.log(carts);
 
     const cartProduct = getStoredCart();
-    // console.log(cartProduct)
+    console.log('cartProduct')
+    console.log(cartProduct)
     let cartContent;
     useEffect(() => {
         // dispatch(loadingAction())

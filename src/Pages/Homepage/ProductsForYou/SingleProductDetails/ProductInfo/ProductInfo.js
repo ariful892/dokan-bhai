@@ -25,6 +25,9 @@ import CursorZoom from 'react-cursor-zoom';
 import Hammer from "hammerjs";
 import ImageZoom from "react-medium-image-zoom";
 import PinchZoomPan from "react-responsive-pinch-zoom-pan";
+import ReactImageMagnify from 'react-image-magnify';
+
+
 
 const ProductInfo = () => {
 
@@ -57,7 +60,23 @@ const ProductInfo = () => {
             .then(res => res.json())
     )
 
+    const [zoomLevel, setZoomLevel] = useState(1);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
+    const handleDoubleClick = (e) => {
+        e.preventDefault();
+        setZoomLevel(2);
+        setPosition({ x: 0, y: 0 });
+    };
+
+    const handleMouseMove = (e) => {
+        if (zoomLevel > 1) {
+            setPosition({
+                x: e.nativeEvent.offsetX,
+                y: e.nativeEvent.offsetY,
+            });
+        }
+    };
 
     if (loading || isLoading) {
         return <Loading></Loading>
@@ -232,7 +251,7 @@ const ProductInfo = () => {
 
 
         if (cartProduct.length) {
-            const addedCart = cartProduct.filter(c => c.productID === id);
+            const addedCart = cartProduct.filter(c => c.product === id);
             // console.log(addedCart);
             if (addedCart.length) {
                 toast.error('Already added')
@@ -342,11 +361,31 @@ const ProductInfo = () => {
                             {/* <img className='product-img-size' src={displayImage} alt="" /> */}
 
 
+
+                            {/* <ReactImageMagnify
+                                {...{
+                                    smallImage: {
+                                        alt: 'My Image',
+                                        isFluidWidth: true,
+                                        src: img,
+                                    },
+                                    largeImage: {
+                                        src: img,
+
+                                        width: 1200,
+                                        height: 1800,
+                                    },
+                                    isActivatedOnTouch: true,
+                                    zoomIn: zoomedIn,
+                                }}
+                                onDoubleClick={handleDoubleClick}
+                            /> */}
+
                             <TransformWrapper
                                 defaultScale={1}
                                 defaultPositionX={100}
                                 defaultPositionY={200}
-                                onWheel={true}
+                                onWheel={false}
                             >
                                 <TransformComponent>
                                     <img className='product-img-size' src={img} alt="" />
@@ -354,24 +393,6 @@ const ProductInfo = () => {
                             </TransformWrapper>
 
                         </div>
-
-
-                        {/* <div className='' style={{ width: '342px', height: '513px' }}> */}
-
-                        {/* <ReactImageMagnify {...{
-                                smallImage: {
-                                    alt: 'Wristwatch by Ted Baker London',
-                                    isFluidWidth: true,
-                                    src: img,
-                                },
-                                largeImage: {
-                                    src: img,
-                                    width: 1200,
-                                    height: 1800
-                                }
-                            }} /> */}
-                        {/* </div> */}
-
 
 
                         <div className='product-demo-img-container'>
