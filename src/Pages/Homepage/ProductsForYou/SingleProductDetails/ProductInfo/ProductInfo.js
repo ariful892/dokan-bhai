@@ -281,6 +281,7 @@ const ProductInfo = () => {
                         }
                         else (
                             toast.error('Failed to add')
+
                         )
                     })
 
@@ -388,7 +389,7 @@ const ProductInfo = () => {
                                 onWheel={false}
                             >
                                 <TransformComponent>
-                                    <img className='product-img-size' src={img} alt="" />
+                                    <img onWheel={false} className='product-img-size' src={img} alt="" />
                                 </TransformComponent>
                             </TransformWrapper>
 
